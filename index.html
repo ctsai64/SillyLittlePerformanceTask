@@ -12,18 +12,15 @@
             font-family: 'Arial';
         }
     </style>
-    <script>
-        function switchScreen(from, toId){
-            from.style.visibility = "none";
-            document.getElementById(toId).style.visibility = "block";
-        }
-        function test(){
-            console.log("sdfds");
+    <script  type="text/javascript" charset="utf-8">
+        function switchScreen(from, to){
+            document.getElementById(from).style.visibility = "none";
+            document.getElementById(to).style.visibility = "block";
         }
     </script>
     <div class="screen" id="start">
         <h1>Welcome to Story</h1>
-        <button onClick = test()>Start</button>
+        <button onClick = "switchScreen('start', 'one')">Start</button>
     </div>
     <div class="screen" id="one" style="display: none">
         <h1>Screen 1</h1>
