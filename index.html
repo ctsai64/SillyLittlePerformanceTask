@@ -13,15 +13,16 @@
         }
     </style>
     <script>
-        function switchScreen(from, to){
-            
+        function switchScreen(from, toId){
+            from.style.visibility = "none";
+            document.getElementById(toId).style.visibility = "block";
         }
     </script>
     <div class="screen" id="start">
         <h1>Welcome to Story</h1>
-        <button>Start</button>
+        <button onClick = switchScreen(this, one)>Start</button>
     </div>
-    <div class="screen" id="one" style="visibility: hidden">
+    <div class="screen" id="one" style="display: none">
         <h1>Screen 1</h1>
     </div>
 </body>
