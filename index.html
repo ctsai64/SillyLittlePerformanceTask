@@ -17,10 +17,13 @@
             from.style.visibility = "none";
             document.getElementById(toId).style.visibility = "block";
         }
+        function test(){
+            console.log("sdfds");
+        }
     </script>
     <div class="screen" id="start">
         <h1>Welcome to Story</h1>
-        <button onClick = switchScreen(this, one)>Start</button>
+        <button onClick = test()>Start</button>
     </div>
     <div class="screen" id="one" style="display: none">
         <h1>Screen 1</h1>
