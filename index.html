@@ -10,7 +10,26 @@
         body {
             text-align: center;
             font-family: 'Arial';
+            padding: 10%;
         }
+        button {
+          font-size: 1.5rem;
+          color: #fafafa;
+          text-transform: uppercase;
+          padding: 10px 20px;
+          border-radius: 10px;
+          border: 2px solid #fafafa;
+          background: #252525;
+          box-shadow: 3px 3px #fafafa;
+          cursor: pointer;
+          margin: 35px 0;
+        }
+
+        button:active {
+          box-shadow: none;
+          transform: translate(3px, 3px);
+        }
+
     </style>
     <script  type="text/javascript" charset="utf-8">
         function switchScreen(from, to){
@@ -21,7 +40,7 @@
     </script>
     <div class="screen" id="start">
         <h1>Welcome to Story</h1>
-        <button onClick = "switchScreen('start', 'one')">Start</button>
+        <button onClick = "switchScreen('start', 'one')">Play</button>
     </div>
     <div class="screen" id="one" style="display: none">
         <h1>Screen 1</h1>
