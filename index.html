@@ -31,8 +31,28 @@
          transform: translate(0em, 0.2em);
         }
 
+        .screen {
+            display: grid;
+        	grid-template-rows: repeat(4, 1fr);
+        	grid-template-columns: repeat(4, 1fr);
+        	gap: 0;
+        	width: 100%;
+        	height: 100%;
+        }
+
+        .content{
+            grid-area: 1 / 1 / 4 / 4;
+	        background-color: rgba(196,208,138, 0.5);
+        }
+
+        .choices{
+            grid-area: 1 / 4 / 4 / 5;
+	        background-color: rgba(83,213,122, 0.5);
+        }
+
         .text{
-            
+            grid-area: 4 / 1 / 5 / 5;
+	        background-color: rgba(216,51,169, 0.5);
         }
 
     </style>
@@ -48,6 +68,7 @@
     </div>
     <div class="screen" id="one" style="display: none">
         <h1>Screen 1</h1>
+        <div class="content" id="oneContent"></div>
         <div class="text" id="oneTxt">Sample Text</div>
         <div class="choices" id="oneChoices">
             <button onClick = "switchScreen('one', 'two')">Choice 1</button>
@@ -56,6 +77,7 @@
     </div>
     <div class="screen" id="two" style="display: none">
         <h1>Screen 2</h1>
+        <div class="content" id="twoContent"></div>
         <div class="text" id="oneTxt">Sample Text</div>
         <div class="choices" id="oneChoices">
             <button onClick = "switchScreen('two', 'one')">Choice 1</button>
@@ -64,6 +86,7 @@
     </div>
     <div class="screen" id="three" style="display: none">
         <h1>Screen 3</h1>
+        <div class="content" id="threeContent"></div>
         <div class="text" id="oneTxt">Sample Text</div>
         <div class="choices" id="oneChoices">
             <button onClick = "switchScreen('three', 'two')">Choice 1</button>
