@@ -49,12 +49,27 @@
     </div>
     <div class="screen" id="one" style="display: none">
         <h1>Screen 1</h1>
-        <div class="text" id="screen1txt">Sample Test</div>
-        <button onClick = "switchScreen('one', 'two')">Go Somewhere</button>
+        <div class="text" id="oneTxt">Sample Text</div>
+        <div class="choices" id="oneChoices">
+            <button onClick = "switchScreen('one', 'two')">Choice 1</button>
+            <button onClick = "switchScreen('one', 'three')">Choice 2</button>
+        </div>
     </div>
     <div class="screen" id="two" style="display: none">
         <h1>Screen 2</h1>
-        <button onClick = "switchScreen('one', 'start')">Go Somewhere</button>
+        <div class="text" id="oneTxt">Sample Text</div>
+        <div class="choices" id="oneChoices">
+            <button onClick = "switchScreen('two', 'one')">Choice 1</button>
+            <button onClick = "switchScreen('two', 'three')">Choice 2</button>
+        </div>
+    </div>
+    <div class="screen" id="three" style="display: none">
+        <h1>Screen 3</h1>
+        <div class="text" id="oneTxt">Sample Text</div>
+        <div class="choices" id="oneChoices">
+            <button onClick = "switchScreen('three', 'two')">Choice 1</button>
+            <button onClick = "switchScreen('three', 'one')">Choice 2</button>
+        </div>
     </div>
 </body>
 </html>
