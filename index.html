@@ -30,6 +30,10 @@
           transform: translate(3px, 3px);
         }
 
+        .screen{
+            
+        }
+
     </style>
     <script  type="text/javascript" charset="utf-8">
         function switchScreen(from, to){
@@ -44,6 +48,7 @@
     </div>
     <div class="screen" id="one" style="display: none">
         <h1>Screen 1</h1>
+        <div class="text" id="screen1txt">Sample Test</div>
         <button onClick = "switchScreen('one', 'two')">Go Somewhere</button>
     </div>
     <div class="screen" id="two" style="display: none">
