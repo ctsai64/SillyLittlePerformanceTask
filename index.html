@@ -61,8 +61,8 @@
     </style>
     <script  type="text/javascript" charset="utf-8">
         function switchScreen(from, to){
+	    document.getElementById(to).style.display = "grid";
             document.getElementById(from).style.display = "none";
-            document.getElementById(to).style.display = "grid";
         }
     </script>
     <div id="start">
