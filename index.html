@@ -167,12 +167,71 @@
 	</div>
         <div class="text">you sit with Glenn. He doesn't say anything. You are assigned a project to review biology from last year and Glenn is your partner. You both agree to meet up to work after school. Where do you meet?</div>
         <div class="choices">
-            <button onClick = "switchScreen('three', 'two')">Your House</button>
-            <button onClick = "switchScreen('three', 'one')">His House</button>
-	    <button onClick = "switchScreen('three', 'one')">Library</button>
+            <button onClick = "switchScreen('SitWithGlenn', 'YourHouse')">Your House</button>
+            <button onClick = "switchScreen('SitWithGlenn', 'one')">His House</button>
+	    <button onClick = "switchScreen('SitWithGlenn', 'one')">Library</button>
         </div>
     </div>
 
+<div class="screen" id="YourHouse">
+        <div class="content">
+		<h1>Your House with Glenn</h1>
+	</div>
+        <div class="text">Glenn arrives at your house, well-dressed and smiling. You invite him inside and begin working.</div>
+        <div class="choices">
+            <button onClick = "switchScreen('YourHouse', 'two')">?</button>
+            <button onClick = "switchScreen('YourHouse', 'one')">?</button>
+	    <button onClick = "switchScreen('YourHouse', 'one')">?</button>
+        </div>
+    </div>
+
+<div class="screen" id="GlennHouse">
+        <div class="content">
+		<h1>Glenn's House</h1>
+	</div>
+        <div class="text">You go to Glenn's house and enter his room, which is cluttered with space and dinosaur decorations (the nerdy kinds). He seems embarresed, what do you say?</div>
+        <div class="choices">
+            <button onClick = "switchScreen('GlennHouse', 'two')">Clown his goofy ahh room.</button>
+            <button onClick = "switchScreen('GlennHouse', 'one')">?</button>
+	    <button onClick = "switchScreen('GlennHouse', 'one')">?</button>
+        </div>
+    </div>
+
+<div class="screen" id="GlennHouse-sad">
+        <div class="content">
+		<h1>Glenn's House - but he's sad bc you made fun of his room</h1>
+	</div>
+        <div class="text">Glenn sdoesn't respond, staying quiet for th rest of the time you guys work.</div>
+        <div class="choices">
+            <button onClick = "switchScreen('GlennHouse', 'two')">?</button>
+            <button onClick = "switchScreen('GlennHouse', 'one')">?</button>
+	    <button onClick = "switchScreen('GlennHouse', 'one')">?</button>
+        </div>
+    </div>
+
+<div class="screen" id="Library">
+        <div class="content">
+		<h1>Library</h1>
+	</div>
+        <div class="text">Glenn meets you at a table in the library. You get to work when someone yells his name across the room. It's Gabe, a jock known for picking on people. Glenn and Gabe go back and forth until Glenn looks ready to throw a punch. Intervene?</div>
+        <div class="choices">
+            <button onClick = "switchScreen('Library', 'two')">Lol no</button>
+            <button onClick = "switchScreen('Library', 'one')">?</button>
+	    <button onClick = "switchScreen('Library', 'one')">?</button>
+        </div>
+    </div>
+
+<div class="screen" id="Fight">
+        <div class="content">
+		<h1>Library Fight</h1>
+	</div>
+        <div class="text">Glenn throws a punch at Gabe. Gabe knocks Glenn out.</div>
+        <div class="choices">
+            <button onClick = "switchScreen('Fight', 'two')">?</button>
+            <button onClick = "switchScreen('Fight', 'one')">?</button>
+	    <button onClick = "switchScreen('Fight', 'one')">?</button>
+        </div>
+    </div>
 
 </body>
 </html>
