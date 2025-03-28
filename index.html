@@ -78,6 +78,7 @@
             <button onClick = "switchScreen('FirstDayofSchool', 'Detention')">No, don't go to school.</button>
         </div>
     </div>
+	
     <div class="screen" id="Detention">
         <div class="content">
 		<h1>Detention</h1>
@@ -85,6 +86,7 @@
         <div class="text"> you get caught and written up</div>
         </div>
     </div>
+	
     <div class="screen" id="APBio">
         <div class="content">
 		<h1>AP Bio</h1>
@@ -95,6 +97,7 @@
             <button onClick = "switchScreen('APBio', 'SitWithDante')">Sit with Dante</button>
         </div>
     </div>
+	
     <div class="screen" id="SitWithDante">
         <div class="content">
 		<h1>Sit with Dante and stars chatting and flirting</h1>
@@ -106,7 +109,59 @@
 	    <button onClick = "switchScreen('three', 'one')">OMG! Yes! (excited) </button>
         </div>
     </div>
-	 <div class="screen" id="SitWithGlenn">
+
+<div class="screen" id="NahFootball">
+        <div class="content">
+		<h1>You and Dante stop talking.</h1>
+	</div>
+        <div class="choices">
+            <button onClick = "switchScreen('NahFootball', 'SitWithGlenn')">Next?</button>
+        </div>
+    </div>
+
+<div class="screen" id="OkFootball">
+        <div class="content">
+		<h1>You see Dante at the game.</h1>
+	</div>
+        <div class="choices">
+            <button onClick = "switchScreen('OkFootball', 'SitWithGlenn')">Next?</button>
+        </div>
+    </div>
+
+<div class="screen" id="UnknownCaller">
+        <div class="content">
+		<h1>Unknown caller</h1>
+	</div>
+        <div class="text">You are at home doing homework when you get a call from an unknown number asking to meet at a park. Do you go?</div>
+        <div class="choices">
+            <button onClick = "switchScreen('UnknownCaller', 'Park')">Yes</button>
+            <button onClick = "switchScreen('UnknownCaller', '?')">No, that's shady.</button>
+        </div>
+    </div>
+
+<div class="screen" id="Park">
+        <div class="content">
+		<h1>At the park wth Dante</h1>
+	</div>
+        <div class="text">You go to the park and see Dante. He asked your friend for your number</div>
+        <div class="choices">
+            <button onClick = "switchScreen('Park', '?')">?</button>
+            <button onClick = "switchScreen('Park', '?')">?</button>
+        </div>
+    </div>
+
+<div class="screen" id="YESFootball">
+        <div class="content">
+		<h1>You see him at the game. After winning, he goes up to you.</h1>
+	</div>
+	<div class="text">YDante asks to hang out with you at the diner. Do you go?</div>
+        <div class="choices">
+            <button onClick = "switchScreen('YESFootball', '?')">Next?</button>
+        </div>
+    </div>
+	
+	
+<div class="screen" id="SitWithGlenn">
         <div class="content">
 		<h1>Sit with Glenn.</h1>
 	</div>
@@ -117,5 +172,7 @@
 	    <button onClick = "switchScreen('three', 'one')">Library</button>
         </div>
     </div>
+
+
 </body>
 </html>
