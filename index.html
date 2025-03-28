@@ -219,9 +219,48 @@
 	</div>
         <div class="text">Glenn meets you at a table in the library. You get to work when someone yells his name across the room. It's Gabe, a jock known for picking on people. Glenn and Gabe go back and forth until Glenn looks ready to throw a punch. Intervene?</div>
         <div class="choices">
-            <button onClick = "switchScreen('Library', 'two')">Lol no</button>
-            <button onClick = "switchScreen('Library', 'one')">?</button>
-	    <button onClick = "switchScreen('Library', 'one')">?</button>
+            <button onClick = "switchScreen('Library', 'Fight')">Lol no</button>
+            <button onClick = "switchScreen('Library', 'Intervention')">Ya</button>
+        </div>
+    </div>
+
+<div class="screen" id="Intervention">
+        <div class="content">
+		<h1>Intervene in Library Fight</h1>
+	</div>
+        <div class="text">You get between the wo and breaks up the fight. Gabe insults you and Glenn and walks away. Glenn thanks you for standing up for him and you continue working.</div>
+        <div class="choices">
+            <button onClick = "switchScreen('Intervention', 'AskHoco')">Next</button>
+        </div>
+    </div>
+<div class="screen" id="AskHoco">
+        <div class="content">
+		<h1>Glenn asks you to hoco</h1>
+	</div>
+        <div class="text">You're working on an English assignment in upir room when you hear the doorbell ring. You open the door and find Glenn. He asks you to your school Homecoming Dance. Do you go?</div>
+        <div class="choices">
+            <button onClick = "switchScreen('AskHoco', 'Hoco')">Ofc, my glorious kind.</button>
+        </div>
+    </div>
+
+<div class="screen" id="Hoco">
+        <div class="content">
+		<h1>At hoco</h1>
+	</div>
+        <div class="text">You meet up with Glenn outise the school gym and enter HOCO with him. You begin to dance when Gabe grabs Glenns shoulder and punches Gabe. What do you do?</div>
+        <div class="choices">
+            <button onClick = "switchScreen('Hoco', 'Hospital')">Spectate</button>
+	<button onClick = "switchScreen('Hoco', 'HappyHoco')">Tell Gabe to back off.</button>
+        </div>
+    </div>
+
+<div class="screen" id="HappyHoco">
+        <div class="content">
+		<h1>Ahappy Hoco</h1>
+	</div>
+        <div class="text">You tell Gabe to back off. He backs off because he is afraid of women. Glenn thanks you and you have a great time at HOCO.</div>
+        <div class="choices">
+            <button onClick = "switchScreen('HappyHoco', 'start')">Start Again?</button>
         </div>
     </div>
 
@@ -231,11 +270,18 @@
 	</div>
         <div class="text">Glenn throws a punch at Gabe. Gabe knocks Glenn out.</div>
         <div class="choices">
-            <button onClick = "switchScreen('Fight', 'two')">?</button>
-            <button onClick = "switchScreen('Fight', 'one')">?</button>
-	    <button onClick = "switchScreen('Fight', 'one')">?</button>
+            <button onClick = "switchScreen('Fight', 'Hospital')">Ayo call an ambulance.</button>
         </div>
     </div>
-
+<div class="screen" id="Hospital">
+        <div class="content">
+		<h1>Glenn on a stretcher</h1>
+	</div>
+        <div class="text">You watch as Glenn is carried to an ambulance on a stretcher.</div>
+	     <div class="choices">
+            <button onClick = "switchScreen('Hospital', 'start')">Start Over?</button>
+        </div>
+    </div>
+	
 </body>
 </html>
