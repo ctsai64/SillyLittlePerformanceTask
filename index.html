@@ -1,3 +1,4 @@
+<!-- Fix text lines breaks-->
 <!-- ALL CODE WRITTEN BY CYMBERLY TSAI AND VI COVRLJAN UNLESS OTHERWISE STATED -->
 <html style="overflow:hidden;">
 
@@ -38,7 +39,9 @@
             background-color: #ffe3e2;
             border-radius: 10px;
             padding: 5%;
-            display: grid;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
             align-items: center;
         }
 
@@ -52,23 +55,23 @@
 
         /* typing animation from CodePen by Marko */
         .type-anim {
-            display: inline-block;
+            display: block;
             font-size: xx-large;
             font-family: monospace;
-            width: calc(var(--char) * 1ch);
+            width: 0;
             height: fit-content;
-            animation: typing 2s steps(var(--char)), blink .5s step-end infinite alternate;
+            animation: typing 2s steps(var(--char)) forwards;
             white-space: nowrap;
             overflow: hidden;
-            border-right: 3px solid;
             font-family: monospace;
             font-size: 2em;
+            text-align: center;
+            margin: 0;
+            padding: 0;
         }
         @keyframes typing {
             from { width: 0; }
-        }
-        @keyframes blink {
-            50% { border-color: transparent; }
+            to { width: calc(var(--char) * 1ch); }
         }
 
         /* button element styles from Uiverse.io by Madflows */
@@ -200,11 +203,13 @@
             const screen = document.createElement("div");
             screen.id = id;
             screen.className = "screen";
+            const lines = text.split('|');
+            const textContent = lines.map(line => `<div class="type-anim">${line}</div>`).join('');
             screen.innerHTML = `
             <div class="content">
                 <img src="${imagePath}" style="width: -webkit-fill-available; height: -webkit-fill-available; object-fit: cover;border-radius: 10px;">
             </div>
-            <div class="text"><div class="type-anim">${text}</div></div>
+            <div class="text">${textContent}</div>
             <button onClick="switchScreen('${id}', 'start')" style="position: fixed; align-self: normal; font-size: smaller; width: min-content; padding: 10px;">Start Over</button>
             `;
             const choicesDiv = document.createElement("div");
@@ -219,7 +224,10 @@
         function switchScreen(from, to) {
             document.getElementById(to).style.display = "grid";
             document.getElementById(from).style.display = "none";
-            document.getElementById(to).style.setProperty('--char', document.getElementById(to).querySelector('.text .type-anim').textContent.length);
+            const typeAnims = document.getElementById(to).querySelectorAll('.text .type-anim');
+            typeAnims.forEach((anim, index) => {
+                setTimeout(() => {anim.style.setProperty('--char', anim.textContent.length);}, index * 2000);
+            });
             localStorage.setItem("currentScreen", to);
         }
 
@@ -230,6 +238,10 @@
                 if (savedScreen != "start") {
                     document.getElementById("start").style.display = "none";
                 }
+                const typeAnims = document.getElementById(to).querySelectorAll('.text .type-anim');
+                typeAnims.forEach((anim, index) => {
+                    setTimeout(() => {anim.style.setProperty('--char', anim.textContent.length);}, index * 2000);
+                });
             }
         };
 
@@ -265,7 +277,7 @@
         createScreen(
             "SitWithDante",
             "placeholder.png",
-            "Dante tells you he plays football. Do you ask to watch him play at his next game?",
+            "Dante tells you he plays football. |Do you ask to watch him play at his next game?",
             [
                 { text: "Nah", destination: "NahFootball" },
                 { text: "Sure, I guess (uninterested)", destination: "OkFootball" },
@@ -294,7 +306,7 @@
         createScreen(
             "UnknownCaller",
             "placeholder.png",
-            "You are at home doing homework when you get a call from an unknown number asking to meet at a park. Do you go?",
+            "You are at home doing homework when you get a call from |an unknown number asking to meet at a park. Do you go?",
             [
                 { text: "Yes", destination: "Park" },
                 { text: "No, that's shady.", destination: "Sleep" }
@@ -333,7 +345,7 @@
         createScreen(
             "SitWithGlenn",
             "placeholder.png",
-            "You sit with Glenn. He doesn't say anything. You are assigned a project to review biology from last year and Glenn is your partner. You both agree to meet up to work after school. Where do you meet?",
+            "You sit with Glenn. He doesn't say anything.|You are assigned a project to review biology from last year and Glenn is your partner.|You both agree to meet up to work after school. Where do you meet?",
             [
                 { text: "Your House", destination: "YourHouse" },
                 { text: "His House", destination: "GlennHouse" },
@@ -344,7 +356,7 @@
         createScreen(
             "YourHouse",
             "placeholder.png",
-            "Glenn arrives at your house, well-dressed and smiling. You invite him inside and begin working.",
+            "Glenn arrives at your house, well-dressed and smiling. |You invite him inside and begin working.",
             [
                 { text: "Next", destination: "YourHouse-next" }
             ]
@@ -353,7 +365,7 @@
         createScreen(
             "YourHouse-next",
             "placeholder.png",
-            "You and Glenn enter your room. Glenn points out your Pokemon posster and begins talking passionately about it. Do you engage in the conversation?",
+            "You and Glenn enter your room. Glenn points out your Pokemon poster |and begins talking passionately about it. |Do you engage in the conversation?",
             [
                 { text: "?", destination: "start" },
                 { text: "?", destination: "start" },
@@ -364,7 +376,7 @@
         createScreen(
             "GlennHouse",
             "placeholder.png",
-            "You go to Glenn's house and enter his room, which is cluttered with space and dinosaur decorations (the nerdy kinds). He seems embarrassed, what do you say?",
+            "You go to Glenn's house and enter his room, which is cluttered with| space and dinosaur decorations (the nerdy kinds).| He seems embarrassed, what do you say?",
             [
                 { text: "Clown his goofy ahh room.", destination: "GlennHouse-sad" },
                 { text: "You tease him in a good-humored way.", destination: "start" },
@@ -384,7 +396,7 @@
         createScreen(
             "GlennHouse-rizz",
             "placeholder.png",
-            "Glenn feels a little ambaressed about his room, but you two get to work and Glenn remains talkative.",
+            "Glenn feels a little ambaressed about his room, |but you two get to work and Glenn remains talkative.",
             [
                 { text: "Next", destination: "HocoAsk" }
             ]
@@ -393,7 +405,7 @@
         createScreen(
             "Library",
             "placeholder.png",
-            "Glenn meets you at a table in the library. You get to work when someone yells his name across the room. It's Gabe, a jock known for picking on people. Glenn and Gabe go back and forth until Glenn looks ready to throw a punch. Intervene?",
+            "Glenn meets you at a table in the library. You get to work when someone |yells his name across the room. It's Gabe, a jock known for picking on people. |Glenn and Gabe go back and forth until Glenn looks ready to throw a punch. |Intervene?",
             [
                 { text: "Lol no", destination: "Fight" },
                 { text: "Ya", destination: "Intervention" }
@@ -403,7 +415,7 @@
         createScreen(
             "Intervention",
             "placeholder.png",
-            "You get between the two and break up the fight. Gabe insults you and Glenn and walks away. Glenn thanks you for standing up for him and you continue working.",
+            "You get between the two and break up the fight. Gabe insults you and Glenn |and walks away. Glenn thanks you for standing up for him and you continue working.",
             [
                 { text: "Next", destination: "AskHoco" }
             ]
@@ -412,7 +424,7 @@
         createScreen(
             "AskHoco",
             "placeholder.png",
-            "You're working on an English assignment in your room when you hear the doorbell ring. You open the door and find Glenn. He asks you to your school Homecoming Dance. Do you go?",
+            "You're working on an English assignment in your room when you hear the doorbell ring. |You open the door and find Glenn. He asks you to your school Homecoming Dance. |Do you go?",
             [
                 { text: "Of course, my glorious kind.", destination: "Hoco" },
                 { text: "Naur", destination: "NaurHoco" }
@@ -422,7 +434,7 @@
         createScreen(
             "NaurHoco",
             "placeholder.png",
-            "You tell Glenn you don't want to go. He turns around saying by in a shaky voice and walks away.",
+            "You tell Glenn you don't want to go. He turns around saying by |in a shaky voice and walks away.",
             [
                 { text: "Next", destination: "Rejected Glenn" }
             ]
@@ -440,7 +452,7 @@
         createScreen(
             "Hoco",
             "placeholder.png",
-            "You meet up with Glenn outside the school gym and enter HOCO with him. You begin to dance when Gabe grabs Glenn's shoulder and punches him. What do you do?",
+            "You meet up with Glenn outside the school gym and enter HOCO with him. |You begin to dance when Gabe grabs Glenn's shoulder and punches him. |What do you do?",
             [
                 { text: "Spectate", destination: "Hospital" },
                 { text: "Tell Gabe to back off.", destination: "HappyHoco" }
@@ -450,7 +462,7 @@
         createScreen(
             "HappyHoco",
             "placeholder.png",
-            "You tell Gabe to back off. He backs off because he is afraid of women. Glenn thanks you and you have a great time at HOCO.",
+            "You tell Gabe to back off. He backs off because he is afraid of women. |Glenn thanks you and you have a great time at HOCO.",
             [
                 { text: "Start Again?", destination: "start" }
             ]
