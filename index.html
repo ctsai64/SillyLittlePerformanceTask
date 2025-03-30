@@ -1,5 +1,5 @@
 <!-- ALL CODE WRITTEN BY CYMBERLY TSAI AND VI COVRLJAN UNLESS OTHERWISE STATED -->
-<html>
+<html style="overflow:hidden;">
 
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,41 @@
             text-align: center;
             font-family: monospace;
             text-transform: uppercase;
-            height: 90vh;
+            height: -webkit-fill-available;
+        }
+
+        .screen {
+            display: none;
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 100%;
+            height: -webkit-fill-available;
+        }
+
+        .content {
+            grid-area: 1 / 1 / 4 / 5;
+        }
+
+        .choices {
+            grid-area: 1 / 4 / 4 / 5;
+        }
+
+        .text {
+            grid-area: 4 / 1 / 5 / 5;
+            background-color: #ffe3e2;
+            border-radius: 10px;
+            padding: 5%;
+            font-size: xx-large;
+            font-family: monospace;
+        }
+
+        @keyframes pulse {
+            50% { transform: scale(1.2);}
+        }
+
+        .pulsing {
+            animation: pulse 1.5s infinite;
         }
 
         /* button element styles From Uiverse.io by Madflows */
@@ -55,6 +89,7 @@
             background: #ffe9e9;
             -webkit-transform: translate(0, 0.25em);
             transform: translate(0, 0.25em);
+            cursor: cell;
         }
         button:hover::before {
             -webkit-box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
@@ -74,32 +109,70 @@
             transform: translate3d(0, 0, -1em);
         }
 
-        .screen {
-            display: none;
-            grid-template-rows: repeat(4, 1fr);
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
+        /*Background animation by Vivin Antony from CodePen*/
+        .bg_heart {
+            position: relative;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            overflow: hidden
         }
-
-        .content {
-            grid-area: 1 / 1 / 4 / 4;
-            background-color: rgba(196, 208, 138, 0.5);
+        .heart {
+            position: absolute;
+            top: -50%;
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -m-transform: rotate(-45deg);
+            transform: rotate(-45deg)
         }
-
-        .choices {
-            grid-area: 1 / 4 / 4 / 5;
+        .heart:before {
+            position: absolute;
+            top: -50%;
+            left: 0;
+            display: block;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: 100%;
         }
-
-        .text {
-            grid-area: 4 / 1 / 5 / 5;
-            background-color: rgba(216, 51, 169, 0.5);
-            padding: 5%;
-            font-size: xx-large;
-            font-family: monospace;
+        .heart:after {
+            position: absolute;
+            top: 0;
+            right: -50%;
+            display: block;
+            content: "";
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            border-radius: 100%;
         }
+        @-webkit-keyframes love {0%{top:110%}}
+        @-moz-keyframes love {0%{top:110%}}
+        @-ms-keyframes love {0%{top:110%}}
+        @keyframes love {0%{top:110%}}
+       
     </style>
+    <div id="start" style="padding: 10%; background-color:#ffe3e2; height: -webkit-fill-available;">
+        <h1 style="
+            font-size: 100;
+            z-index: 10;
+            color: #60ECFF;
+            background: white;
+            padding: 50 0 0 0;
+            border-radius: 20px;">Welcome to<br>Stockdale High</h1>
+        <div onClick="switchScreen('start', 'FirstDayofSchool')"
+            style="display: block; 
+                justify-self: center; 
+                font-size: 50; 
+                z-index: 10;
+                animation: pulse 2s infinite 3s;
+                cursor: cell;
+                font-weight: bold;
+                color: #60ECFF;
+                ">Play</div>
+    </div>
     <script type="text/javascript" charset="utf-8">
         function createScreen(id, imagePath, text, choices) {
             const screen = document.createElement("div");
@@ -107,10 +180,10 @@
             screen.className = "screen";
             screen.innerHTML = `
             <div class="content">
-                <img src="${imagePath}" style="width: -webkit-fill-available; height: -webkit-fill-available; object-fit: cover;">
+                <img src="${imagePath}" style="width: -webkit-fill-available; height: -webkit-fill-available; object-fit: cover;border-radius: 10px;">
             </div>
             <div class="text">${text}</div>
-            <button onClick="switchScreen('${id}', 'start')" style="">Start Over</button>
+            <button onClick="switchScreen('${id}', 'start')" style="position: fixed; align-self: self-end; font-size: smaller; width: min-content; padding: 10px;">Start Over</button>
             `;
             const choicesDiv = document.createElement("div");
             choicesDiv.className = "choices";
@@ -377,12 +450,44 @@
                 { text: "Start Over?", destination: "start" }
             ]
         );
+
+        // Background animation by Binary Beats from Medium
+        // Define a function that creates a heart element with random properties
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.width = `${Math.floor(Math.random() * 65) + 10}px`;
+            heart.style.height = heart.style.width;
+            heart.style.left = `${Math.floor(Math.random() * 100) + 1}%`;
+            heart.style.background = `rgba(255, ${Math.floor(Math.random() * 25) + 100 - 25}, ${Math.floor(Math.random() * 25) + 100}, 1)`;
+            const duration = Math.floor(Math.random() * 5) + 5;
+            heart.style.animation = `love ${duration}s ease`;
+            return heart;
+        }
+        // Get the container element where the hearts will be added
+        const container = document.getElementById('start');   
+        // Define a function that removes hearts that have gone off screen
+        function removeHearts() {
+            const hearts = container.querySelectorAll('.heart');
+            hearts.forEach((heart) => {
+            const top = parseFloat(getComputedStyle(heart).getPropertyValue('top'));
+            const width = parseFloat(getComputedStyle(heart).getPropertyValue('width'));
+            if (top <= -100 || width >= 150) {
+                heart.remove();
+            }
+            });
+        }
+        // Define a function that repeatedly adds hearts to the container
+        function addHeart() {
+            const heart1 = createHeart();
+            const heart2 = createHeart();
+            container.appendChild(heart1);
+            container.appendChild(heart2);
+            setTimeout(removeHearts, 1000);
+        }
+        // Start the animation loop
+        const love = setInterval(addHeart, 500);
     </script>
-    <div id="start" style="padding: 10%">
-        <h1>Welcome to Story</h1>
-        <button onClick="switchScreen('start', 'FirstDayofSchool')"
-            style="display: block; justify-self: center; width:fit-content">Play</button>
-    </div>
 </body>
 
 </html>
