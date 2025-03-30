@@ -1,287 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <title>Stockdale High</title>
 </head>
+
 <body>
     <style>
         body {
             text-align: center;
             font-family: 'Arial';
-	    height: 90vh;
+            height: 90vh;
         }
 
         /*button styles from UIverse by arieshiphop*/
         button {
-	 font-size: 17px;
-	 padding: 0.5em 2em;
-	 border: transparent;
-	 box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
-	 background: dodgerblue;
-	 color: white;
-	 border-radius: 4px;
-	 margin: 10px;
+            font-size: 17px;
+            padding: 0.5em 2em;
+            border: transparent;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            background: dodgerblue;
+            color: white;
+            border-radius: 4px;
+            margin: 10px;
         }
         button:hover {
-         background: rgb(2,0,36);
-         background: linear-gradient(90deg, rgba(30,144,255,1) 0%, rgba(0,212,255,1) 100%);
+            background: rgb(2, 0, 36);
+            background: linear-gradient(90deg, rgba(30, 144, 255, 1) 0%, rgba(0, 212, 255, 1) 100%);
         }
         button:active {
-         transform: translate(0em, 0.2em);
+            transform: translate(0em, 0.2em);
         }
 
-	    
         .screen {
-	  display: none;
-	  grid-template-rows: repeat(4, 1fr);
-	  grid-template-columns: repeat(4, 1fr);
-	  gap: 0;
-	  width: 100%;
-	  height: 100%;
+            display: none;
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            width: 100%;
+            height: 100%;
         }
 
-        .content{
-          grid-area: 1 / 1 / 4 / 4;
-	  background-color: rgba(196,208,138, 0.5);
-		padding: 5%;
+        .content {
+            grid-area: 1 / 1 / 4 / 4;
+            background-color: rgba(196, 208, 138, 0.5);
+            padding: 5%;
         }
 
-        .choices{
-		grid-area: 1 / 4 / 4 / 5;
-	        background-color: rgba(83,213,122, 0.5);
+        .choices {
+            grid-area: 1 / 4 / 4 / 5;
+            background-color: rgba(83, 213, 122, 0.5);
         }
 
-        .text{
-		grid-area: 4 / 1 / 5 / 5;
-	        background-color: rgba(216,51,169, 0.5);
-		padding: 5%;
+        .text {
+            grid-area: 4 / 1 / 5 / 5;
+            background-color: rgba(216, 51, 169, 0.5);
+            padding: 5%;
         }
-
     </style>
-    <script  type="text/javascript" charset="utf-8">
-        function switchScreen(from, to){
-	    document.getElementById(to).style.display = "grid";
+    <script type="text/javascript" charset="utf-8">
+        function createScreen(id, title, text, choices) {
+            const screen = document.createElement("div");
+            screen.id = id;
+            screen.className = "screen";
+            screen.innerHTML = `
+                <div class="content">
+                    <h1>${title}</h1>
+                </div>
+                <div class="text">${text}</div>`;
+            for(var choice of choices) {
+                screen.innerHTML += `<button onClick="switchScreen(${id}, ${choice.destination}">${choice.text}</button>`;
+            }
+            document.body.appendChild(screen);
+        }
+        function switchScreen(from, to) {
+            document.getElementById(to).style.display = "grid";
             document.getElementById(from).style.display = "none";
         }
+
+        createScreen(
+            "FirstDayofSchool",
+            "Wake up for 1st day of senior year",
+            "It's the first day of your senior year at Stockdale High. Do you go to school?",
+            [
+                { text: "Yes, go to school.", destination: "APBio" },
+                { text: "No, don't go to school.", destination: "Detention" }
+            ]
+        );
+
+        createScreen(
+            "Detention",
+            "Detention",
+            "You get caught and written up.",
+            [
+                { text: "Start Over?", destination: "start" }
+            ]
+        );
+
+        createScreen(
+            "APBio",
+            "AP Bio",
+            "You go to AP Bio first period. Only two seats are left.",
+            [
+                { text: "Sit with Glenn", destination: "SitWithGlenn" },
+                { text: "Sit with Dante", destination: "SitWithDante" }
+            ]
+        );
+
+        createScreen(
+            "SitWithDante",
+            "Sit with Dante and start chatting and flirting",
+            "Dante tells you he plays football. Do you ask to watch him play at his next game?",
+            [
+                { text: "Nah", destination: "NahFootball" },
+                { text: "Sure, I guess (uninterested)", destination: "OkFootball" },
+                { text: "OMG! Yes! (excited)", destination: "YESFootball" }
+            ]
+        );
+
+        createScreen(
+            "NahFootball",
+            "You and Dante stop talking.",
+            "",
+            [
+                { text: "Next?", destination: "UnknownCaller" }
+            ]
+        );
+
+        createScreen(
+            "OkFootball",
+            "You see Dante at the game.",
+            "",
+            [
+                { text: "Next?", destination: "UnknownCaller" }
+            ]
+        );
+
+        createScreen(
+            "UnknownCaller",
+            "Unknown caller",
+            "You are at home doing homework when you get a call from an unknown number asking to meet at a park. Do you go?",
+            [
+                { text: "Yes", destination: "Park" },
+                { text: "No, that's shady.", destination: "Sleep" }
+            ]
+        );
+
+        createScreen(
+            "Sleep",
+            "Go to bed",
+            "You go to bed.",
+            [
+                { text: "?", destination: "?" }
+            ]
+        )
+
+        createScreen(
+            "Park",
+            "At the park with Dante",
+            "You go to the park and see Dante. He asked your friend for your number.",
+            [
+                { text: "?", destination: "start" },
+                { text: "?", destination: "start" }
+            ]
+        );
+
+        createScreen(
+            "YESFootball",
+            "You see him at the game. After winning, he goes up to you.",
+            "Dante asks to hang out with you at the diner. Do you go?",
+            [
+                { text: "Nope, I'm going home.", destination: "Sleep" },
+                { text: "?", destination: "?" }
+            ]
+        );
+
+        createScreen(
+            "SitWithGlenn",
+            "Sit with Glenn.",
+            "You sit with Glenn. He doesn't say anything. You are assigned a project to review biology from last year and Glenn is your partner. You both agree to meet up to work after school. Where do you meet?",
+            [
+                { text: "Your House", destination: "YourHouse" },
+                { text: "His House", destination: "GlennHouse" },
+                { text: "Library", destination: "Library" }
+            ]
+        );
+
+        createScreen(
+            "YourHouse",
+            "Your House with Glenn",
+            "Glenn arrives at your house, well-dressed and smiling. You invite him inside and begin working.",
+            [
+                { text: "?", destination: "start" },
+                { text: "?", destination: "start" },
+                { text: "?", destination: "start" }
+            ]
+        );
+
+        createScreen(
+            "YourHouse-next",
+            "At your house",
+            "You and Glenn enter your room. Glenn points out your Pokemon posster and begins talking passionately about it. Do you engage in the conversation?",
+            [
+                { text: "?", destination: "start" },
+                { text: "?", destination: "start" },
+                { text: "?", destination: "start" }
+            ]
+        )
+
+        createScreen(
+            "GlennHouse",
+            "Glenn's House",
+            "You go to Glenn's house and enter his room, which is cluttered with space and dinosaur decorations (the nerdy kinds). He seems embarrassed, what do you say?",
+            [
+                { text: "Clown his goofy ahh room.", destination: "GlennHouse-sad" },
+                { text: "You tease him in a good-humored way.", destination: "start" },
+            ]
+        );
+
+        createScreen(
+            "GlennHouse-sad",
+            "Glenn's House - but he's sad because you made fun of his room",
+            "Glenn doesn't respond, staying quiet for the rest of the time you guys work.",
+            [
+                { text: "?", destination: "start" },
+                { text: "?", destination: "start" },
+                { text: "?", destination: "start" }
+            ]
+        );
+        createScreen(
+            "GlennHouse-rizz",
+            "Glenn's House - talking",
+            "Glenn feels a little ambaressed about his room, but you two get to work and Glenn remains talkative.",
+            [
+                { text: "Next", destination: "HocoAsk" }
+            ]
+        );
+
+        createScreen(
+            "Library",
+            "Library",
+            "Glenn meets you at a table in the library. You get to work when someone yells his name across the room. It's Gabe, a jock known for picking on people. Glenn and Gabe go back and forth until Glenn looks ready to throw a punch. Intervene?",
+            [
+                { text: "Lol no", destination: "Fight" },
+                { text: "Ya", destination: "Intervention" }
+            ]
+        );
+
+        createScreen(
+            "Intervention",
+            "Intervene in Library Fight",
+            "You get between the two and break up the fight. Gabe insults you and Glenn and walks away. Glenn thanks you for standing up for him and you continue working.",
+            [
+                { text: "Next", destination: "AskHoco" }
+            ]
+        );
+
+        createScreen(
+            "AskHoco",
+            "Glenn asks you to hoco",
+            "You're working on an English assignment in your room when you hear the doorbell ring. You open the door and find Glenn. He asks you to your school Homecoming Dance. Do you go?",
+            [
+                { text: "Of course, my glorious kind.", destination: "Hoco" },
+                { text: "Naur", destination: "NaurHoco" }
+            ]
+        );
+
+        createScreen(
+            "NaurHoco",
+            "Reject Glenn",
+            "You tell Glenn you don't want to go. He turns around saying by in a shaky voice and walks away.",
+            [
+                { text: "Next", destination: "Rejected Glenn" }
+            ]
+        );
+
+        createScreen(
+            "RejectedGlenn",
+            "You don't go to hoco, sleeping",
+            "You go to sleep and eventually skip HOCO entirely.",
+            [
+                { text: "Start Over?", destination: "start" }
+            ]
+        )
+
+        createScreen(
+            "Hoco",
+            "At hoco",
+            "You meet up with Glenn outside the school gym and enter HOCO with him. You begin to dance when Gabe grabs Glenn's shoulder and punches him. What do you do?",
+            [
+                { text: "Spectate", destination: "Hospital" },
+                { text: "Tell Gabe to back off.", destination: "HappyHoco" }
+            ]
+        );
+
+        createScreen(
+            "HappyHoco",
+            "A happy Hoco",
+            "You tell Gabe to back off. He backs off because he is afraid of women. Glenn thanks you and you have a great time at HOCO.",
+            [
+                { text: "Start Again?", destination: "start" }
+            ]
+        );
+
+        createScreen(
+            "Fight",
+            "Library Fight",
+            "Glenn throws a punch at Gabe. Gabe knocks Glenn out.",
+            [
+                { text: "Ayo call an ambulance.", destination: "Hospital" }
+            ]
+        );
+
+        createScreen(
+            "Hospital",
+            "Glenn on a stretcher",
+            "You watch as Glenn is carried to an ambulance on a stretcher.",
+            [
+                { text: "Start Over?", destination: "start" }
+            ]
+        );
+        
+
     </script>
     <div id="start" style="padding: 10%">
         <h1>Welcome to Story</h1>
-        <button onClick = "switchScreen('start', 'FirstDayofSchool')">Play</button>
+        <button onClick="switchScreen('start', 'FirstDayofSchool')">Play</button>
     </div>
-    <div class="screen" id="FirstDayofSchool">
-        <div class="content">
-		<h1>Wake up for 1st day of senior year</h1>
-	</div>
-        <div class="text">It's the first day of your senior year at Stockdale High. Do you go to school?</div>
-        <div class="choices">
-            <button onClick = "switchScreen('FirstDayofSchool', 'APBio')">Yes, go to school.</button>
-            <button onClick = "switchScreen('FirstDayofSchool', 'Detention')">No, don't go to school.</button>
-        </div>
-    </div>
-	
-    <div class="screen" id="Detention">
-        <div class="content">
-		<h1>Detention</h1>
-	</div>
-        <div class="text"> you get caught and written up</div>
-	     <div class="choices">
-            <button onClick = "switchScreen('Detention', 'start')">Start Over?</button>
-        </div>
-    </div>
-	
-    <div class="screen" id="APBio">
-        <div class="content">
-		<h1>AP Bio</h1>
-	</div>
-        <div class="text">You go to AP Bio first period. Only two seats are left.</div>
-        <div class="choices">
-            <button onClick = "switchScreen('APBio', 'SitWithGlenn')">Sit with Glenn</button>
-            <button onClick = "switchScreen('APBio', 'SitWithDante')">Sit with Dante</button>
-        </div>
-    </div>
-	
-    <div class="screen" id="SitWithDante">
-        <div class="content">
-		<h1>Sit with Dante and stars chatting and flirting</h1>
-	</div>
-        <div class="text">Dante tells you he plays football. Do you ask to watch him play at his next game?</div>
-        <div class="choices">
-            <button onClick = "switchScreen('SitWithDante', 'NahFootball')">Nah</button>
-            <button onClick = "switchScreen('SitWithDante', 'OkFootball')">Sure, I guess (uninterested)</button>
-	    <button onClick = "switchScreen('SitWithDante', 'YESFootball')">OMG! Yes! (excited) </button>
-        </div>
-    </div>
-
-<div class="screen" id="NahFootball">
-        <div class="content">
-		<h1>You and Dante stop talking.</h1>
-	</div>
-        <div class="choices">
-            <button onClick = "switchScreen('NahFootball', 'UnknownCaller')">Next?</button>
-        </div>
-    </div>
-
-<div class="screen" id="OkFootball">
-        <div class="content">
-		<h1>You see Dante at the game.</h1>
-	</div>
-        <div class="choices">
-            <button onClick = "switchScreen('OkFootball', 'UnknownCaller')">Next?</button>
-        </div>
-    </div>
-
-<div class="screen" id="UnknownCaller">
-        <div class="content">
-		<h1>Unknown caller</h1>
-	</div>
-        <div class="text">You are at home doing homework when you get a call from an unknown number asking to meet at a park. Do you go?</div>
-        <div class="choices">
-            <button onClick = "switchScreen('UnknownCaller', 'Park')">Yes</button>
-            <button onClick = "switchScreen('UnknownCaller', '?')">No, that's shady.</button>
-        </div>
-    </div>
-
-<div class="screen" id="Park">
-        <div class="content">
-		<h1>At the park wth Dante</h1>
-	</div>
-        <div class="text">You go to the park and see Dante. He asked your friend for your number</div>
-        <div class="choices">
-            <button onClick = "switchScreen('Park', '?')">?</button>
-            <button onClick = "switchScreen('Park', '?')">?</button>
-        </div>
-    </div>
-
-<div class="screen" id="YESFootball">
-        <div class="content">
-		<h1>You see him at the game. After winning, he goes up to you.</h1>
-	</div>
-	<div class="text">YDante asks to hang out with you at the diner. Do you go?</div>
-        <div class="choices">
-            <button onClick = "switchScreen('YESFootball', '?')">Next?</button>
-        </div>
-    </div>
-	
-	
-<div class="screen" id="SitWithGlenn">
-        <div class="content">
-		<h1>Sit with Glenn.</h1>
-	</div>
-        <div class="text">you sit with Glenn. He doesn't say anything. You are assigned a project to review biology from last year and Glenn is your partner. You both agree to meet up to work after school. Where do you meet?</div>
-        <div class="choices">
-            <button onClick = "switchScreen('SitWithGlenn', 'YourHouse')">Your House</button>
-            <button onClick = "switchScreen('SitWithGlenn', 'GlennHouse')">His House</button>
-	    <button onClick = "switchScreen('SitWithGlenn', 'Library')">Library</button>
-        </div>
-    </div>
-
-<div class="screen" id="YourHouse">
-        <div class="content">
-		<h1>Your House with Glenn</h1>
-	</div>
-        <div class="text">Glenn arrives at your house, well-dressed and smiling. You invite him inside and begin working.</div>
-        <div class="choices">
-            <button onClick = "switchScreen('YourHouse', 'two')">?</button>
-            <button onClick = "switchScreen('YourHouse', 'one')">?</button>
-	    <button onClick = "switchScreen('YourHouse', 'one')">?</button>
-        </div>
-    </div>
-
-<div class="screen" id="GlennHouse">
-        <div class="content">
-		<h1>Glenn's House</h1>
-	</div>
-        <div class="text">You go to Glenn's house and enter his room, which is cluttered with space and dinosaur decorations (the nerdy kinds). He seems embarresed, what do you say?</div>
-        <div class="choices">
-            <button onClick = "switchScreen('GlennHouse', 'two')">Clown his goofy ahh room.</button>
-            <button onClick = "switchScreen('GlennHouse', 'one')">?</button>
-	    <button onClick = "switchScreen('GlennHouse', 'one')">?</button>
-        </div>
-    </div>
-
-<div class="screen" id="GlennHouse-sad">
-        <div class="content">
-		<h1>Glenn's House - but he's sad bc you made fun of his room</h1>
-	</div>
-        <div class="text">Glenn sdoesn't respond, staying quiet for th rest of the time you guys work.</div>
-        <div class="choices">
-            <button onClick = "switchScreen('GlennHouse', 'two')">?</button>
-            <button onClick = "switchScreen('GlennHouse', 'one')">?</button>
-	    <button onClick = "switchScreen('GlennHouse', 'one')">?</button>
-        </div>
-    </div>
-
-<div class="screen" id="Library">
-        <div class="content">
-		<h1>Library</h1>
-	</div>
-        <div class="text">Glenn meets you at a table in the library. You get to work when someone yells his name across the room. It's Gabe, a jock known for picking on people. Glenn and Gabe go back and forth until Glenn looks ready to throw a punch. Intervene?</div>
-        <div class="choices">
-            <button onClick = "switchScreen('Library', 'Fight')">Lol no</button>
-            <button onClick = "switchScreen('Library', 'Intervention')">Ya</button>
-        </div>
-    </div>
-
-<div class="screen" id="Intervention">
-        <div class="content">
-		<h1>Intervene in Library Fight</h1>
-	</div>
-        <div class="text">You get between the wo and breaks up the fight. Gabe insults you and Glenn and walks away. Glenn thanks you for standing up for him and you continue working.</div>
-        <div class="choices">
-            <button onClick = "switchScreen('Intervention', 'AskHoco')">Next</button>
-        </div>
-    </div>
-<div class="screen" id="AskHoco">
-        <div class="content">
-		<h1>Glenn asks you to hoco</h1>
-	</div>
-        <div class="text">You're working on an English assignment in upir room when you hear the doorbell ring. You open the door and find Glenn. He asks you to your school Homecoming Dance. Do you go?</div>
-        <div class="choices">
-            <button onClick = "switchScreen('AskHoco', 'Hoco')">Ofc, my glorious kind.</button>
-        </div>
-    </div>
-
-<div class="screen" id="Hoco">
-        <div class="content">
-		<h1>At hoco</h1>
-	</div>
-        <div class="text">You meet up with Glenn outise the school gym and enter HOCO with him. You begin to dance when Gabe grabs Glenns shoulder and punches Gabe. What do you do?</div>
-        <div class="choices">
-            <button onClick = "switchScreen('Hoco', 'Hospital')">Spectate</button>
-	<button onClick = "switchScreen('Hoco', 'HappyHoco')">Tell Gabe to back off.</button>
-        </div>
-    </div>
-
-<div class="screen" id="HappyHoco">
-        <div class="content">
-		<h1>Ahappy Hoco</h1>
-	</div>
-        <div class="text">You tell Gabe to back off. He backs off because he is afraid of women. Glenn thanks you and you have a great time at HOCO.</div>
-        <div class="choices">
-            <button onClick = "switchScreen('HappyHoco', 'start')">Start Again?</button>
-        </div>
-    </div>
-
-<div class="screen" id="Fight">
-        <div class="content">
-		<h1>Library Fight</h1>
-	</div>
-        <div class="text">Glenn throws a punch at Gabe. Gabe knocks Glenn out.</div>
-        <div class="choices">
-            <button onClick = "switchScreen('Fight', 'Hospital')">Ayo call an ambulance.</button>
-        </div>
-    </div>
-<div class="screen" id="Hospital">
-        <div class="content">
-		<h1>Glenn on a stretcher</h1>
-	</div>
-        <div class="text">You watch as Glenn is carried to an ambulance on a stretcher.</div>
-	     <div class="choices">
-            <button onClick = "switchScreen('Hospital', 'start')">Start Over?</button>
-        </div>
-    </div>
-	
 </body>
+
 </html>
