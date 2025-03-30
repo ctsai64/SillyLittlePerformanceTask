@@ -38,8 +38,8 @@
             background-color: #ffe3e2;
             border-radius: 10px;
             padding: 5%;
-            font-size: xx-large;
-            font-family: monospace;
+            display: grid;
+            align-items: center;
         }
 
         @keyframes pulse {
@@ -50,7 +50,28 @@
             animation: pulse 1.5s infinite;
         }
 
-        /* button element styles From Uiverse.io by Madflows */
+        /* typing animation from CodePen by Marko */
+        .type-anim {
+            display: inline-block;
+            font-size: xx-large;
+            font-family: monospace;
+            width: calc(var(--char) * 1ch);
+            height: fit-content;
+            animation: typing 2s steps(var(--char)), blink .5s step-end infinite alternate;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid;
+            font-family: monospace;
+            font-size: 2em;
+        }
+        @keyframes typing {
+            from { width: 0; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        /* button element styles from Uiverse.io by Madflows */
         button{
             font-weight: 600;
             color: #382b22;
@@ -159,9 +180,10 @@
             font-size: 100;
             z-index: 10;
             color: #60ECFF;
-            background: white;
+            /*background: white;
             padding: 50 0 0 0;
-            border-radius: 20px;">Welcome to<br>Stockdale High</h1>
+            border-radius: 20px;*/
+            font-family: system-ui;">Welcome to<br>Stockdale High</h1>
         <div onClick="switchScreen('start', 'FirstDayofSchool')"
             style="display: block; 
                 justify-self: center; 
@@ -182,8 +204,8 @@
             <div class="content">
                 <img src="${imagePath}" style="width: -webkit-fill-available; height: -webkit-fill-available; object-fit: cover;border-radius: 10px;">
             </div>
-            <div class="text">${text}</div>
-            <button onClick="switchScreen('${id}', 'start')" style="position: fixed; align-self: self-end; font-size: smaller; width: min-content; padding: 10px;">Start Over</button>
+            <div class="text"><div class="type-anim">${text}</div></div>
+            <button onClick="switchScreen('${id}', 'start')" style="position: fixed; align-self: normal; font-size: smaller; width: min-content; padding: 10px;">Start Over</button>
             `;
             const choicesDiv = document.createElement("div");
             choicesDiv.className = "choices";
@@ -197,6 +219,7 @@
         function switchScreen(from, to) {
             document.getElementById(to).style.display = "grid";
             document.getElementById(from).style.display = "none";
+            document.getElementById(to).style.setProperty('--char', document.getElementById(to).querySelector('.text .type-anim').textContent.length);
             localStorage.setItem("currentScreen", to);
         }
 
