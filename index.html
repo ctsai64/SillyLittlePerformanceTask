@@ -236,10 +236,11 @@
             const savedScreen = localStorage.getItem("currentScreen");
             if (savedScreen && document.getElementById(savedScreen)) {
                 switchScreen("start", savedScreen);
-                /*document.getElementById(savedScreen).style.display = "grid";
+                document.getElementById(savedScreen).style.display = "grid";
                 if (savedScreen != "start") {
                     document.getElementById("start").style.display = "none";
                 }
+                /*
                 const typeAnims = document.getElementById(to).querySelectorAll('.text .type-anim');
                 typeAnims.forEach((anim, index) => {
                     setTimeout(() => {anim.style.setProperty('--char', anim.textContent.length);}, index * 2000);
