@@ -38,11 +38,6 @@ window.onload = function () {
         if (savedScreen != "start") {
             document.getElementById("start").style.display = "none";
         }
-        /*
-        const typeAnims = document.getElementById(to).querySelectorAll('.text .type-anim');
-        typeAnims.forEach((anim, index) => {
-            setTimeout(() => {anim.style.setProperty('--char', anim.textContent.length);}, index * 2000);
-        });*/
     }
 };
 
