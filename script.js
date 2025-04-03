@@ -117,27 +117,9 @@ createScreen(
     "Image_Needed.png",
     "Dante tells you he plays football. |Do you ask to watch him play at his next game?",
     [
-        { text: "Nah", destination: "NahFootball" },
-        { text: "Sure, I guess (uninterested)", destination: "OkFootball" },
-        { text: "OMG! Yes! (excited)", destination: "YESFootball" }
-    ]
-);
-
-createScreen(
-    "NahFootball",
-    "Image_Needed.png",
-    "",
-    [
-        { text: "Next?", destination: "UnknownCaller" }
-    ]
-);
-
-createScreen(
-    "OkFootball",
-    "Image_Needed.png",
-    "",
-    [
-        { text: "Next?", destination: "UnknownCaller" }
+        { text: "Nah", destination: "UnknownCaller" },
+        { text: "Yes (uninterested)", destination: "UnknownCaller" },
+        { text: "Yes! (excited)", destination: "YESFootball" }
     ]
 );
 
@@ -163,12 +145,40 @@ createScreen(
 createScreen(
     "Park",
     "Image_Needed.png",
-    "You go to the park and see Dante. |He asked your friend for your number.",
+    "You go to the park and see Dante. |He asked your friend for your number.|Creeped out you ask why he called you out here. He says he was intrgiugued by you and would like to get to know yout better. How do you respond?",
     [
-        { text: "?", destination: "start" },
-        { text: "?", destination: "start" }
+        { text: "GET OUT", destination: "NoHoco" },
+        { text: "sure...?", destination: "HocoDante" }
     ]
 );
+
+createScreen(
+    "HocoDante",
+    "Image_Needed.png",
+    "Yo go to hoco ad are boared. You want to leave bc it's bored, do you leave with dante?",
+    [
+        { text: "For sure twin", destination: "FootballGame" },
+        { text: "No, ditch him", destination: "NoHoco" }
+    ]
+);
+
+createScreen(
+    "DanteEnd",
+    "Image_Needed.png",
+    "Good ending with Dante|[GOOD ENDING]",
+    [
+        { text: "Start Over?", destination: "start" }
+    ]
+)
+
+createScreen(
+    "AwkardPark",
+    "Image_Needed.png",
+    "Sit with dante in park",
+    [
+        { text: "Next", destination: "HocoSale" }
+    ]
+)
 
 createScreen(
     "YESFootball",
@@ -191,14 +201,34 @@ createScreen(
 );
 
 createScreen(
+    "Bonding",
+    "Image_Needed.png",
+    "You and Dante bond over your mutual love of Pokemon.|Dante gives you his number. Do you later text Dante to go to HOCO?",
+    [
+        { text: "Sure", destination: "HocoDante" },
+        { text: "Nah", destination: "NoHoco" }
+    ]
+
+)
+
+createScreen(
     "HocoSale",
     "Image_Needed.png",
     "HOCO tickets are on sale! In class a few days later, you see Dante with Glenn, who is vibrantly smilig.|You buy a ticket, avoiding any interaction with the two.|It's the afternoon before HOCO. Do you go?",
     [
-        { text: "Ya", destination: "-" },
-        { text: "No", destination: "-" }
+        { text: "Ya", destination: "DanteXGlenn" },
+        { text: "No", destination: "NoHoco" }
     ]
 );
+
+createScreen(
+    "DanteXGlenn",
+    "Image_Needed.png",
+    "Dante takes glenn to prom. |[BAD ENDING]",
+    [
+        { text: "Start Over?", destination: "start" }
+    ]
+)
 
 createScreen(
     "SitWithGlenn",
@@ -214,20 +244,10 @@ createScreen(
 createScreen(
     "YourHouse",
     "Image_Needed.png",
-    "Glenn arrives at your house, well-dressed and smiling. |You invite him inside and begin working.",
+    "Glenn arrives at your house, well-dressed and smiling. |You invite him inside and begin working. You and Glenn enter your room. Glenn points out your Pokemon poster |and begins talking passionately about it. |Do you shut him up?",
     [
-        { text: "Next", destination: "YourHouse-next" }
-    ]
-);
-
-createScreen(
-    "YourHouse-next",
-    "Image_Needed.png",
-    "You and Glenn enter your room. Glenn points out your Pokemon poster |and begins talking passionately about it. |Do you engage in the conversation?",
-    [
-        { text: "?", destination: "start" },
-        { text: "?", destination: "start" },
-        { text: "?", destination: "start" }
+        { text: "naur", destination: "AskHoco" },
+        { text: "yea", destination: "GlennWorkingSad" },
     ]
 );
 
@@ -236,23 +256,30 @@ createScreen(
     "Image_Needed.png",
     "You go to Glenn's house and enter his room, which is cluttered with| space and dinosaur decorations (the nerdy kinds).| He seems embarrassed, what do you say?",
     [
-        { text: "Clown his goofy ahh room.", destination: "GlennHouse-sad" },
-        { text: "You tease him in a good-humored way.", destination: "start" },
+        { text: "Clown his goofy ahh room.", destination: "GlennHouseSad" },
+        { text: "You tease him in a good-humored way.", destination: "GlennHouseRizz" },
     ]
 );
 
 createScreen(
-    "GlennHouse-sad",
+    "NoHoco",
+    "Image_Needed.png",
+    "You stay home from HOCO [normal ending]",
+    [
+        { text: "Start Over?", destination: "start" }
+    ]
+)
+
+createScreen(
+    "GlennWorkingSad",
     "Image_Needed.png",
     "Glenn doesn't respond, staying quiet for the rest of the time you guys work.",
     [
-        { text: "?", destination: "start" },
-        { text: "?", destination: "start" },
-        { text: "?", destination: "start" }
+        { text: "Next?", destination: "NoHoco" },
     ]
 );
 createScreen(
-    "GlennHouse-rizz",
+    "GlennHouseRizz",
     "Image_Needed.png",
     "Glenn feels a little ambaressed about his room, |but you two get to work and Glenn remains talkative.",
     [
@@ -285,30 +312,21 @@ createScreen(
     "You're working on an English assignment in your room when you hear the doorbell ring. |You open the door and find Glenn. He asks you to your school Homecoming Dance. |Do you go?",
     [
         { text: "Of course, my glorious kind.", destination: "Hoco" },
-        { text: "Naur", destination: "NaurHoco" }
-    ]
-);
-
-createScreen(
-    "NaurHoco",
-    "Image_Needed.png",
-    "You tell Glenn you don't want to go. He turns around saying by |in a shaky voice and walks away.",
-    [
-        { text: "Next", destination: "Rejected Glenn" }
+        { text: "Naur", destination: "RejectedGlenn" }
     ]
 );
 
 createScreen(
     "RejectedGlenn",
     "Image_Needed.png",
-    "You go to sleep and eventually skip HOCO entirely.",
+    "You tell Glenn you don't want to go. He turns around saying by |in a shaky voice and walks away.",
     [
         { text: "Start Over?", destination: "start" }
     ]
 );
 
 createScreen(
-    "Hoco",
+    "HocoGlenn",
     "Image_Needed.png",
     "You meet up with Glenn outside the school gym and enter HOCO with him. |You begin to dance when Gabe grabs Glenn's shoulder and punches him. |What do you do?",
     [
@@ -320,7 +338,7 @@ createScreen(
 createScreen(
     "HappyHoco",
     "Image_Needed.png",
-    "You tell Gabe to back off. He backs off because he is afraid of women. |Glenn thanks you and you have a great time at HOCO.",
+    "You tell Gabe to back off. He backs off because he is afraid of women. |Glenn thanks you and you have a great time at HOCO. [GOOD ENDING]",
     [
         { text: "Start Again?", destination: "start" }
     ]
@@ -338,7 +356,7 @@ createScreen(
 createScreen(
     "Hospital",
     "Image_Needed.png",
-    "You watch as Glenn is carried to an ambulance on a stretcher.",
+    "You watch as Glenn is carried to an ambulance on a stretcher. [BAD ENDING]",
     [
         { text: "Start Over?", destination: "start" }
     ]
