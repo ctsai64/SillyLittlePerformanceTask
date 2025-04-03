@@ -340,12 +340,22 @@
         );
 
         createScreen(
-            "Dine",
+            "Diner",
             "placeholder.png",
-            "He drives you to a decent-looking diner. You grab a seat and he immediatly |starts talking about his gae, glazing himself to the max.|He ",
+            "He drives you to a decent-looking diner. You grab a seat and he immediatly |starts talking about his gae, glazing himself to the max.|He sees that you are bored and asks you about yout hobbies.| How do you respond?",
             [
-                { text: "Nope, I'm going home.", destination: "Sleep" },
-                { text: "Yeah", destination: "?" }
+                { text: "Answer enthusiatically", destination: "Bonding" },
+                { text: "Be cold", destination: "HocoSale" }
+            ]
+        );
+
+        createScreen(
+            "HocoSale",
+            "placeholder.png",
+            "HOCO tickets are on sale! In class a few days later, you see Dante with Glenn, who is vibrantly smilig.|You buy a ticket, avoiding any nteraction with the two.|",
+            [
+                { text: "Answer enthusiatically", destination: "Bonding" },
+                { text: "Be cold", destination: "LousyResponce" }
             ]
         );
 
