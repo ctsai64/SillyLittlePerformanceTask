@@ -114,7 +114,7 @@ createScreen(
     "placeholder.png",
     "You go to bed.",
     [
-        { text: "Next?", destination: "?" }
+        { text: "Next?", destination: "HocoSale" }
     ]
 );
 
@@ -151,10 +151,10 @@ createScreen(
 createScreen(
     "HocoSale",
     "placeholder.png",
-    "HOCO tickets are on sale! In class a few days later, you see Dante with Glenn, who is vibrantly smilig.|You buy a ticket, avoiding any nteraction with the two.|",
+    "HOCO tickets are on sale! In class a few days later, you see Dante with Glenn, who is vibrantly smilig.|You buy a ticket, avoiding any interaction with the two.|It's the afternoon before HOCO. Do you go?",
     [
-        { text: "Answer enthusiatically", destination: "Bonding" },
-        { text: "Be cold", destination: "LousyResponce" }
+        { text: "Ya", destination: "-" },
+        { text: "No", destination: "-" }
     ]
 );
 
