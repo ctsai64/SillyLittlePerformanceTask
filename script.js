@@ -337,6 +337,7 @@ function addHeart() {
     setTimeout(removeHearts, 1000);
 }
 
-while(localStorage.getItem("currentScreen") == "start"){
+const h = setInterval(addHeart, 500);
+/*while(localStorage.getItem("currentScreen") == "start"){
     setTimeout(addHeart, 500);
-}
+}*/
