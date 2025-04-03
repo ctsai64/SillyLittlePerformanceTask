@@ -520,8 +520,10 @@
             container.appendChild(heart2);
             setTimeout(removeHearts, 1000);
         }
-        // Start the animation loop
-        const love = setInterval(addHeart, 500);
+
+        while(localStorage.getItem("currentScreen") == "start"){
+            setTimeout(addHeart, 500);
+        }
     </script>
 </body>
 
