@@ -180,10 +180,7 @@
         <h1 style="
             font-size: 3em;
             z-index: 10;
-            color: #60ECFF;
-            /*background: white;
-            padding: 50 0 0 0;
-            border-radius: 20px;*/
+            color: #45062E;
             font-family: system-ui;">Welcome to<br>Stockdale High</h1>
         <div onClick="switchScreen('start', 'FirstDayofSchool')"
             style="display: block; 
@@ -193,7 +190,7 @@
                 animation: pulse 2s infinite 3s;
                 cursor: cell;
                 font-weight: bold;
-                color: #60ECFF;
+                color: #45062E;
                 ">Play</div>
     </div>
     <script type="text/javascript" charset="utf-8">
@@ -318,7 +315,7 @@
             "placeholder.png",
             "You go to bed.",
             [
-                { text: "?", destination: "?" }
+                { text: "Next?", destination: "?" }
             ]
         );
 
@@ -338,7 +335,17 @@
             "Dante asks to hang out with you at the diner. Do you go?",
             [
                 { text: "Nope, I'm going home.", destination: "Sleep" },
-                { text: "?", destination: "?" }
+                { text: "Yeah", destination: "Diner" }
+            ]
+        );
+
+        createScreen(
+            "Dine",
+            "placeholder.png",
+            "He drives you to a decent-looking diner. You grab a seat and he immediatly |starts talking about his gae, glazing himself to the max.|He ",
+            [
+                { text: "Nope, I'm going home.", destination: "Sleep" },
+                { text: "Yeah", destination: "?" }
             ]
         );
 
