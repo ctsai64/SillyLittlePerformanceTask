@@ -1,3 +1,7 @@
+/*  Begin CSS Code File
+    ALL CODE WRITTEN BY CYMBERLY TSAI AND VI COVRLJAN UNLESS OTHERWISE STATED
+*/
+
 body {
     text-align: center;
     font-family: monospace;
@@ -61,7 +65,7 @@ body {
     to { width: calc(var(--char) * 1ch); }
 }
 
-/* button element styles from Uiverse.io by Madflows */
+/* button element styles adapted from Uiverse.io by Madflows */
 button{
     font-weight: 600;
     color: #382b22;
@@ -120,7 +124,7 @@ button:active::before {
     transform: translate3d(0, 0, -1em);
 }
 
-/*Background animation by Vivin Antony from CodePen*/
+/*Background animation adapted by Vivin Antony from CodePen*/
 .bg_heart {
     position: relative;
     top: 0;
@@ -164,3 +168,4 @@ button:active::before {
 @-moz-keyframes love {0%{top:110%}}
 @-ms-keyframes love {0%{top:110%}}
 @keyframes love {0%{top:110%}}
+/* end of adapted code */
