@@ -114,7 +114,7 @@ createScreen(
 
 createScreen(
     "SitWithDante",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/danteclassroom.jpg",
     "Dante tells you he plays football. |Do you ask to watch him play at his next game?",
     [
         { text: "Nah", destination: "UnknownCaller" },
@@ -125,7 +125,7 @@ createScreen(
 
 createScreen(
     "UnknownCaller",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/ynbedroom1.jpg",
     "You are at home doing homework when you get a call from |an unknown number asking to meet at a park. |Do you go?",
     [
         { text: "Yes", destination: "Park" },
@@ -135,7 +135,7 @@ createScreen(
 
 createScreen(
     "Sleep",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/ynbedroom1.jpg",
     "You go to bed.",
     [
         { text: "Next?", destination: "HocoSale" }
@@ -164,7 +164,7 @@ createScreen(
 
 createScreen(
     "DanteEnd",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/black.jpg",
     "Good ending with Dante|[GOOD ENDING]",
     [
         { text: "Start Over?", destination: "start" }
@@ -263,7 +263,7 @@ createScreen(
 
 createScreen(
     "NoHoco",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/black.jpg",
     "You stay home from HOCO [normal ending]",
     [
         { text: "Start Over?", destination: "start" }
@@ -355,7 +355,7 @@ createScreen(
 
 createScreen(
     "Hospital",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/black.jpg",
     "You watch as Glenn is carried to an ambulance on a stretcher. [BAD ENDING]",
     [
         { text: "Start Over?", destination: "start" }
