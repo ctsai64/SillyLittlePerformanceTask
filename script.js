@@ -154,7 +154,7 @@ createScreen(
 
 createScreen(
     "HocoDante",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/dantehoco.jpg",
     "Yo go to hoco ad are boared. You want to leave bc it's bored, do you leave with dante?",
     [
         { text: "For sure twin", destination: "FootballGame" },
@@ -192,7 +192,7 @@ createScreen(
 
 createScreen(
     "Diner",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/dantediner.jpg",
     "He drives you to a decent-looking diner. You grab a seat and he immediatly |starts talking about his gae, glazing himself to the max.|He sees that you are bored and asks you about yout hobbies.| How do you respond?",
     [
         { text: "Answer enthusiatically", destination: "Bonding" },
@@ -213,7 +213,7 @@ createScreen(
 
 createScreen(
     "HocoSale",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/danteglennhallway.jpg",
     "HOCO tickets are on sale! In class a few days later, you see Dante with Glenn, who is vibrantly smilig.|You buy a ticket, avoiding any interaction with the two.|It's the afternoon before HOCO. Do you go?",
     [
         { text: "Ya", destination: "DanteXGlenn" },
@@ -223,7 +223,7 @@ createScreen(
 
 createScreen(
     "DanteXGlenn",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/danteglennhoco.jpg",
     "Dante takes glenn to prom. |[BAD ENDING]",
     [
         { text: "Start Over?", destination: "start" }
@@ -232,7 +232,7 @@ createScreen(
 
 createScreen(
     "SitWithGlenn",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/glennclassroom.jpg",
     "You sit with Glenn. He doesn't say anything.|You are assigned a project to review biology from last year and Glenn is your partner.|You both agree to meet up to work after school. Where do you meet?",
     [
         { text: "Your House", destination: "YourHouse" },
@@ -243,7 +243,7 @@ createScreen(
 
 createScreen(
     "YourHouse",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/glenn.ynhouse.jpg",
     "Glenn arrives at your house, well-dressed and smiling. |You invite him inside and begin working. You and Glenn enter your room. Glenn points out your Pokemon poster |and begins talking passionately about it. |Do you shut him up?",
     [
         { text: "naur", destination: "AskHoco" },
@@ -253,7 +253,7 @@ createScreen(
 
 createScreen(
     "GlennHouse",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/glennglennhouse.jpg",
     "You go to Glenn's house and enter his room, which is cluttered with| space and dinosaur decorations (the nerdy kinds).| He seems embarrassed, what do you say?",
     [
         { text: "Clown his goofy ahh room.", destination: "GlennHouseSad" },
@@ -272,7 +272,7 @@ createScreen(
 
 createScreen(
     "GlennWorkingSad",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/glennglennhouse.jpg",
     "Glenn doesn't respond, staying quiet for the rest of the time you guys work.",
     [
         { text: "Next?", destination: "NoHoco" },
@@ -280,7 +280,7 @@ createScreen(
 );
 createScreen(
     "GlennHouseRizz",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/glennglennhouse.jpg",
     "Glenn feels a little ambaressed about his room, |but you two get to work and Glenn remains talkative.",
     [
         { text: "Next", destination: "HocoAsk" }
@@ -289,7 +289,7 @@ createScreen(
 
 createScreen(
     "Library",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/glennlibrary.jpg",
     "Glenn meets you at a table in the library. You get to work when someone |yells his name across the room. It's Gabe, a jock known for picking on people. |Glenn and Gabe go back and forth until Glenn looks ready to throw a punch. |Intervene?",
     [
         { text: "Lol no", destination: "Fight" },
@@ -299,7 +299,7 @@ createScreen(
 
 createScreen(
     "Intervention",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/glenngabelibrary",
     "You get between the two and break up the fight. Gabe insults you and Glenn |and walks away. Glenn thanks you for standing up for him and you continue working.",
     [
         { text: "Next", destination: "AskHoco" }
@@ -308,7 +308,7 @@ createScreen(
 
 createScreen(
     "AskHoco",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/glennhallway1.jpg",
     "You're working on an English assignment in your room when you hear the doorbell ring. |You open the door and find Glenn. He asks you to your school Homecoming Dance. |Do you go?",
     [
         { text: "Of course, my glorious kind.", destination: "Hoco" },
@@ -318,7 +318,7 @@ createScreen(
 
 createScreen(
     "RejectedGlenn",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/schoolhall1.jpg",
     "You tell Glenn you don't want to go. He turns around saying by |in a shaky voice and walks away.",
     [
         { text: "Start Over?", destination: "start" }
@@ -327,7 +327,7 @@ createScreen(
 
 createScreen(
     "HocoGlenn",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/glennhoco.jpg",
     "You meet up with Glenn outside the school gym and enter HOCO with him. |You begin to dance when Gabe grabs Glenn's shoulder and punches him. |What do you do?",
     [
         { text: "Spectate", destination: "Hospital" },
@@ -337,7 +337,7 @@ createScreen(
 
 createScreen(
     "HappyHoco",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/glennhoco.jpg",
     "You tell Gabe to back off. He backs off because he is afraid of women. |Glenn thanks you and you have a great time at HOCO. [GOOD ENDING]",
     [
         { text: "Start Again?", destination: "start" }
@@ -346,7 +346,7 @@ createScreen(
 
 createScreen(
     "Fight",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/glenngabehoco.jpg",
     "Glenn throws a punch at Gabe. Gabe knocks Glenn out.",
     [
         { text: "Ayo call an ambulance.", destination: "Hospital" }
