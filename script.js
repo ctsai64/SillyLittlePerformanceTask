@@ -85,7 +85,7 @@ window.onload = function () {
 
 createScreen(
     "FirstDayofSchool",
-    "StockdalePhotos/ynbedroom1.png",
+    "StockdalePhotos/ynbedroom1.jpg",
     "Todays the first day of senior| year! | You wake up, put on your| nicest outfit, gather your| belongings, and head out.|You arrive on campus after walking|for a few minutes. You’re|reminded that your first period class is…|AP Bio. Ugh.|You conjure up the genius idea to|simply skip class! What will you do? Skip or Go to class",
     [
         { text: "Yes, go to school.", destination: "APBio" },
@@ -95,7 +95,7 @@ createScreen(
 
 createScreen(
     "Detention",
-    "Image_Needed.png",
+    "StockdalePhotos/schoolhall1.jpg",
     "You get caught and written up.",
     [
         { text: "Start Over?", destination: "start" }
