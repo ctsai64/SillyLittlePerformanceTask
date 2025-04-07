@@ -115,7 +115,7 @@ createScreen(
 createScreen(
     "SitWithDante",
     "StockdalePhotos/danteclassroom.jpg",
-    "Dante tells you he plays football. |Do you ask to watch him play at his next game?",
+    "Dante: Hey mamas what’s good? 😉|You: Um…|Dante: Th’names Dante. Like that guy with the inferno yk??|You: For sureeee|Dante: Lit. Say, I got a game later this week|for homecoming. You should totally slide 😝",
     [
         { text: "Nah", destination: "UnknownCaller" },
         { text: "Yes (uninterested)", destination: "UnknownCaller" },
@@ -173,7 +173,7 @@ createScreen(
 
 createScreen(
     "AwkardPark",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/dantepark.jpg",
     "Sit with dante in park",
     [
         { text: "Next", destination: "HocoSale" }
@@ -182,7 +182,7 @@ createScreen(
 
 createScreen(
     "YESFootball",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/dantefield.jpg",
     "Dante asks to hang out with you at the diner. Do you go?",
     [
         { text: "Nope, I'm going home.", destination: "Sleep" },
