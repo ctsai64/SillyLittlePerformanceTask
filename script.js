@@ -96,7 +96,7 @@ createScreen(
 createScreen(
     "Detention",
     "StockdalePhotos/schoolhall1.jpg",
-    "You decide to roam the halls for a little|while. You then hear footsteps|approaching from around the corner.|Teacher: Where do you think YOU’RE going?!",
+    "Todays the first day of senior year!|You wake up, put on your nicest outfit, gather your  belongings, and head out.|You arrive on campus after walking for a few minutes. You’re reminded that your first period class is…AP Bio. Ugh. |You conjure up the genius idea to simply skip class! What will you do? ",
     [
         { text: "Start Over?", destination: "start" }
     ]
