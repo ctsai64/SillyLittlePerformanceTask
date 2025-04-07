@@ -96,7 +96,7 @@ createScreen(
 createScreen(
     "Detention",
     "StockdalePhotos/schoolhall1.jpg",
-    "You get caught and written up.",
+    "You decide to roam the halls for a little|while. You then hear footsteps|approaching from around the corner.|Teacher: Where do you think YOU’RE going?!",
     [
         { text: "Start Over?", destination: "start" }
     ]
