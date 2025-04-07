@@ -144,7 +144,7 @@ createScreen(
 
 createScreen(
     "Park",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/dantepark.jpg",
     "You go to the park and see Dante. |He asked your friend for your number.|Creeped out you ask why he called you out here. He says he was intrgiugued by you and would like to get to know yout better. How do you respond?",
     [
         { text: "GET OUT", destination: "NoHoco" },
@@ -202,7 +202,7 @@ createScreen(
 
 createScreen(
     "Bonding",
-    "StockdalePhotos/blank",
+    "StockdalePhotos/dantepark.jpg",
     "You and Dante bond over your mutual love of Pokemon.|Dante gives you his number. Do you later text Dante to go to HOCO?",
     [
         { text: "Sure", destination: "HocoDante" },
