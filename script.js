@@ -104,7 +104,7 @@ createScreen(
 
 createScreen(
     "APBio",
-    "Image_Needed.png",
+    "StockdalePhotos/danteglennclassroom.jpg",
     "You go to AP Bio first period. Only two seats are left.",
     [
         { text: "Sit with Glenn", destination: "SitWithGlenn" },
