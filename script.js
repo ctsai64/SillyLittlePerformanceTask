@@ -114,7 +114,7 @@ createScreen(
 
 createScreen(
     "SitWithDante",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "Dante tells you he plays football. |Do you ask to watch him play at his next game?",
     [
         { text: "Nah", destination: "UnknownCaller" },
@@ -125,7 +125,7 @@ createScreen(
 
 createScreen(
     "UnknownCaller",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You are at home doing homework when you get a call from |an unknown number asking to meet at a park. |Do you go?",
     [
         { text: "Yes", destination: "Park" },
@@ -135,7 +135,7 @@ createScreen(
 
 createScreen(
     "Sleep",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You go to bed.",
     [
         { text: "Next?", destination: "HocoSale" }
@@ -144,7 +144,7 @@ createScreen(
 
 createScreen(
     "Park",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You go to the park and see Dante. |He asked your friend for your number.|Creeped out you ask why he called you out here. He says he was intrgiugued by you and would like to get to know yout better. How do you respond?",
     [
         { text: "GET OUT", destination: "NoHoco" },
@@ -154,7 +154,7 @@ createScreen(
 
 createScreen(
     "HocoDante",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "Yo go to hoco ad are boared. You want to leave bc it's bored, do you leave with dante?",
     [
         { text: "For sure twin", destination: "FootballGame" },
@@ -164,7 +164,7 @@ createScreen(
 
 createScreen(
     "DanteEnd",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "Good ending with Dante|[GOOD ENDING]",
     [
         { text: "Start Over?", destination: "start" }
@@ -173,7 +173,7 @@ createScreen(
 
 createScreen(
     "AwkardPark",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "Sit with dante in park",
     [
         { text: "Next", destination: "HocoSale" }
@@ -182,7 +182,7 @@ createScreen(
 
 createScreen(
     "YESFootball",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "Dante asks to hang out with you at the diner. Do you go?",
     [
         { text: "Nope, I'm going home.", destination: "Sleep" },
@@ -192,7 +192,7 @@ createScreen(
 
 createScreen(
     "Diner",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "He drives you to a decent-looking diner. You grab a seat and he immediatly |starts talking about his gae, glazing himself to the max.|He sees that you are bored and asks you about yout hobbies.| How do you respond?",
     [
         { text: "Answer enthusiatically", destination: "Bonding" },
@@ -202,7 +202,7 @@ createScreen(
 
 createScreen(
     "Bonding",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You and Dante bond over your mutual love of Pokemon.|Dante gives you his number. Do you later text Dante to go to HOCO?",
     [
         { text: "Sure", destination: "HocoDante" },
@@ -213,7 +213,7 @@ createScreen(
 
 createScreen(
     "HocoSale",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "HOCO tickets are on sale! In class a few days later, you see Dante with Glenn, who is vibrantly smilig.|You buy a ticket, avoiding any interaction with the two.|It's the afternoon before HOCO. Do you go?",
     [
         { text: "Ya", destination: "DanteXGlenn" },
@@ -223,7 +223,7 @@ createScreen(
 
 createScreen(
     "DanteXGlenn",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "Dante takes glenn to prom. |[BAD ENDING]",
     [
         { text: "Start Over?", destination: "start" }
@@ -232,7 +232,7 @@ createScreen(
 
 createScreen(
     "SitWithGlenn",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You sit with Glenn. He doesn't say anything.|You are assigned a project to review biology from last year and Glenn is your partner.|You both agree to meet up to work after school. Where do you meet?",
     [
         { text: "Your House", destination: "YourHouse" },
@@ -243,7 +243,7 @@ createScreen(
 
 createScreen(
     "YourHouse",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "Glenn arrives at your house, well-dressed and smiling. |You invite him inside and begin working. You and Glenn enter your room. Glenn points out your Pokemon poster |and begins talking passionately about it. |Do you shut him up?",
     [
         { text: "naur", destination: "AskHoco" },
@@ -253,7 +253,7 @@ createScreen(
 
 createScreen(
     "GlennHouse",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You go to Glenn's house and enter his room, which is cluttered with| space and dinosaur decorations (the nerdy kinds).| He seems embarrassed, what do you say?",
     [
         { text: "Clown his goofy ahh room.", destination: "GlennHouseSad" },
@@ -263,7 +263,7 @@ createScreen(
 
 createScreen(
     "NoHoco",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You stay home from HOCO [normal ending]",
     [
         { text: "Start Over?", destination: "start" }
@@ -272,7 +272,7 @@ createScreen(
 
 createScreen(
     "GlennWorkingSad",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "Glenn doesn't respond, staying quiet for the rest of the time you guys work.",
     [
         { text: "Next?", destination: "NoHoco" },
@@ -280,7 +280,7 @@ createScreen(
 );
 createScreen(
     "GlennHouseRizz",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "Glenn feels a little ambaressed about his room, |but you two get to work and Glenn remains talkative.",
     [
         { text: "Next", destination: "HocoAsk" }
@@ -289,7 +289,7 @@ createScreen(
 
 createScreen(
     "Library",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "Glenn meets you at a table in the library. You get to work when someone |yells his name across the room. It's Gabe, a jock known for picking on people. |Glenn and Gabe go back and forth until Glenn looks ready to throw a punch. |Intervene?",
     [
         { text: "Lol no", destination: "Fight" },
@@ -299,7 +299,7 @@ createScreen(
 
 createScreen(
     "Intervention",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You get between the two and break up the fight. Gabe insults you and Glenn |and walks away. Glenn thanks you for standing up for him and you continue working.",
     [
         { text: "Next", destination: "AskHoco" }
@@ -308,7 +308,7 @@ createScreen(
 
 createScreen(
     "AskHoco",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You're working on an English assignment in your room when you hear the doorbell ring. |You open the door and find Glenn. He asks you to your school Homecoming Dance. |Do you go?",
     [
         { text: "Of course, my glorious kind.", destination: "Hoco" },
@@ -318,7 +318,7 @@ createScreen(
 
 createScreen(
     "RejectedGlenn",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You tell Glenn you don't want to go. He turns around saying by |in a shaky voice and walks away.",
     [
         { text: "Start Over?", destination: "start" }
@@ -327,7 +327,7 @@ createScreen(
 
 createScreen(
     "HocoGlenn",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You meet up with Glenn outside the school gym and enter HOCO with him. |You begin to dance when Gabe grabs Glenn's shoulder and punches him. |What do you do?",
     [
         { text: "Spectate", destination: "Hospital" },
@@ -337,7 +337,7 @@ createScreen(
 
 createScreen(
     "HappyHoco",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You tell Gabe to back off. He backs off because he is afraid of women. |Glenn thanks you and you have a great time at HOCO. [GOOD ENDING]",
     [
         { text: "Start Again?", destination: "start" }
@@ -346,7 +346,7 @@ createScreen(
 
 createScreen(
     "Fight",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "Glenn throws a punch at Gabe. Gabe knocks Glenn out.",
     [
         { text: "Ayo call an ambulance.", destination: "Hospital" }
@@ -355,7 +355,7 @@ createScreen(
 
 createScreen(
     "Hospital",
-    "Image_Needed.png",
+    "StockdalePhotos/blank",
     "You watch as Glenn is carried to an ambulance on a stretcher. [BAD ENDING]",
     [
         { text: "Start Over?", destination: "start" }
