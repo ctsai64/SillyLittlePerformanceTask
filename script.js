@@ -96,11 +96,20 @@ createScreen(
 createScreen(
     "Detention",
     "StockdalePhotos/schoolhall1.jpg",
-    "Todays the first day of senior year!|You wake up, put on your nicest outfit, gather your  belongings, and head out.|You arrive on campus after walking for a few minutes. You’re reminded that your first period class is…AP Bio. Ugh. |You conjure up the genius idea to simply skip class! What will you do? ",
+    "You decide to roam the halls for a little while.|You then hear footsteps approaching from around the corner."
     [
-        { text: "Start Over?", destination: "start" }
+        { text: "Next?", destination: "DetentionEnd" }
     ]
 );
+
+createScreen(
+    "DetentionEnd",
+    "StockdalePhotos/black.jpg",
+    "Teacher:  Where do you think YOU’RE going?! [BAD ENDING]",
+    [
+        { text: "Start Over?", "start"}
+    ]
+)
 
 createScreen(
     "APBio",
