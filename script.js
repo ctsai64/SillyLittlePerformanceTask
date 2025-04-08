@@ -231,7 +231,7 @@ createScreen(
 createScreen(
     "YESFootball",
     "StockdalePhotos/dantefield.jpg",
-    "Dante asks to hang out with you at the diner. Do you go?",
+    "You arrive at the field, sit down, and watch the game play out.|Dante manages to score a touchdown right as the final quarter wraps up!|Dante: Yoooo did you see that dawg??? I COOKED them lol|You: You sure did!|Dante:Say, wanna go get something to chow down on? I sure am hungry after carrying this entire team on my back.",
     [
         { text: "Nope, I'm going home.", destination: "Sleep" },
         { text: "Yeah", destination: "Diner" }
