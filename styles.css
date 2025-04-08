@@ -37,6 +37,10 @@ body {
     align-items: center;
 }
 
+@keyframes fade{
+    100% { filter: brightness(0);}
+}
+
 @keyframes pulse {
     50% { transform: scale(1.2);}
 }
