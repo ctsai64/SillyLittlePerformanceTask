@@ -9,7 +9,7 @@ function createScreen(id, imagePath, text, choices) {
     const textContent = lines.map(line => `<div class="type-anim">${line}</div>`).join('');
     screen.innerHTML = `
     <div class="content">
-        <img src="${imagePath}" style="width: -webkit-fill-available; height: -webkit-fill-available; object-fit: cover;border-radius: 10px;">
+        <img src="${imagePath}" style="height: -webkit-fill-available; object-fit: cover;">
     </div>
     <div class="text">${textContent}</div>
     <button onClick="switchScreen('${id}', 'start')" style="position: fixed; align-self: normal; font-size: smaller; width: min-content; padding: 10px;">Start Over</button>
