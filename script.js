@@ -112,7 +112,7 @@ createScreen(
     [
         { text: "Start Over?", "start"}
     ]
-)
+);
 
 createScreen(
     "APBio",
