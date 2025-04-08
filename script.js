@@ -110,7 +110,7 @@ createScreen(
     "StockdalePhotos/black.jpg",
     "Teacher:  Where do you think YOU’RE going?! [BAD ENDING]",
     [
-        { text: "Start Over?", "start"}
+        { text: "Start Over?", destination: "start"}
     ]
 );
 
