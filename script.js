@@ -117,10 +117,10 @@ createScreen(
 createScreen(
     "APBio",
     "StockdalePhotos/danteglennclassroom.jpg",
-    "You go to AP Bio first period. Only two seats are left.",
+    "You arrive to class just as the bell rings. You notice that every seat is taken except for two.|One is next to a blonde, sporty-looking young man. The other is next to a guy who looks like| the stereotypical nerd. Who do you sit with?",
     [
-        { text: "Sit with Glenn", destination: "SitWithGlenn" },
-        { text: "Sit with Dante", destination: "SitWithDante" }
+        { text: "Geek", destination: "SitWithGlenn" },
+        { text: "Jock", destination: "SitWithDante" }
     ]
 );
 
@@ -129,9 +129,45 @@ createScreen(
     "StockdalePhotos/danteclassroom.jpg",
     "Dante: Hey mamas what’s good? 😉|You: Um…|Dante: Th’names Dante. Like that guy with the inferno yk??|You: For sureeee|Dante: Lit. Say, I got a game later this week for homecoming. You should totally slide 😝",
     [
-        { text: "Nah", destination: "UnknownCaller" },
-        { text: "Yes (uninterested)", destination: "UnknownCaller" },
-        { text: "Yes! (excited)", destination: "YESFootball" }
+        { text: "Nah", destination: "NoToDante" },
+        { text: "Sureeee", destination: "SureToDante" },
+        { text: "Yes!!!", destination: "YesToDante" }
+    ]
+);
+
+createScreen(
+    "NoToDante",
+    "StockdalePhotos/danteclassroom.jpg",
+    "Dante: zamn ok ig…",
+    [
+        { text: "Next", destination: "UnknownCaller" },
+    ]
+);
+
+createScreen(
+    "YesToDante",
+    "StockdalePhotos/danteclassroom.jpg",
+    "Dante: Fyeeeee! I’ll see u there ahaha 😘",
+    [
+        { text: "Next", destination: "YESFootball" },
+    ]
+);
+
+createScreen(
+    "SureToDante",
+    "StockdalePhotos/danteclassroom.jpg",
+    "Dante: Ight bet",
+    [
+        { text: "Next", destination: "SureFootball" },
+    ]
+);
+
+createScreen(
+    "SureFootball",
+    "StockdalePhotos/dantefield.jpg",
+    "You get bored and leave early.",
+    [
+        { text: "Next", destination: "UnknownCaller" },
     ]
 );
 
