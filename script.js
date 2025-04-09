@@ -19,7 +19,26 @@ function createScreen(id, imagePath, text, choices) {
     screen.className = "screen";
     // Process text argument for display
     const lines = text.split('|');
-    const textContent = lines.map(line => `<div class="type-anim">${line}</div>`).join('');
+    const textContent = lines.map(line => {
+        // Split long lines into multiple lines if they exceed 100 characters
+        const wrappedLines = [];
+        let currentLine = '';
+        const words = line.split(' ');
+        for (const word of words) {
+            if ((currentLine + word).length > 100) {
+                wrappedLines.push(currentLine.trim());
+                currentLine = word;
+            } else {
+                currentLine += (currentLine ? ' ' : '') + word;
+            }
+        }
+        if (currentLine) {
+            wrappedLines.push(currentLine.trim());
+        }
+        return wrappedLines.map(wrappedLine => 
+            `<div>${wrappedLine}</div>`
+        ).join('');
+    }).join('');
     // Define content inside screen container as HTML elements
     screen.innerHTML = `
     <div class="content">
@@ -46,10 +65,11 @@ function createScreen(id, imagePath, text, choices) {
 //    from (str) - unique identifier of screen a button is associated with
 //    to (str) - unique identifier of screen to be displayed when button is clicked
 function switchScreen(from, to) {
-    document.getElementById(from).style.animation = "fade 1s forwards";
+    document.getElementById(from).style.animation = "fade 0.5s forwards";
     setTimeout(() => {
         document.getElementById(to).style.display = "grid";
         document.getElementById(from).style.display = "none";
+        document.getElementById(to).style.animation = "none";
         const typeAnims = document.getElementById(to).querySelectorAll('.text .type-anim');
         typeAnims.forEach((anim, index) => {
             setTimeout(() => {anim.style.setProperty('--char', anim.textContent.length);}, index * 2000);
@@ -101,16 +121,16 @@ window.onload = function () {
     if (savedScreen && document.getElementById(savedScreen)) {
         h = setInterval(addHeart, 500);
         document.getElementById(savedScreen).style.display = "grid";
-        document.getElementById("start").style.display = "none";
-        const typeAnims = document.getElementById(to).querySelectorAll('.text .type-anim');
-        typeAnims.forEach((anim, index) => {
-            setTimeout(() => {anim.style.setProperty('--char', anim.textContent.length);}, index * 2000);
-        });
-        localStorage.setItem("currentScreen", to);
-        document.getElementById(savedScreen).style.display = "grid";
         if (savedScreen != "start") {
+            document.getElementById(savedScreen).style.display = "grid";
+            document.getElementById(to).style.animation = "none";
             document.getElementById("start").style.display = "none";
-            clearInterval(h);
+            const typeAnims = document.getElementById(savedScreen).querySelectorAll('.text .type-anim');
+            typeAnims.forEach((anim, index) => {
+                setTimeout(() => {anim.style.setProperty('--char', anim.textContent.length);}, index * 2000);
+            });
+            localStorage.setItem("currentScreen", savedScreen);
+                clearInterval(h);
         }
     }
 };
