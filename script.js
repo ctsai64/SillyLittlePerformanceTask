@@ -347,7 +347,7 @@ createScreen(
 
 createScreen(
     "Intervention",
-    "StockdalePhotos/glenngabelibrary",
+    "StockdalePhotos/glenngabelibrary.jpg",
     "You get between the two and break up the fight. Gabe insults you and Glenn |and walks away. Glenn thanks you for standing up for him and you continue working.",
     [
         { text: "Next", destination: "AskHoco" }
