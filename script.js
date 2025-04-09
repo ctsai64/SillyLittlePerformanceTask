@@ -95,6 +95,7 @@ function addHeart() {
 var h = setInterval(addHeart, 500);
 // END OF ADAPTED CODE
 
+
 window.onload = function () {
     const savedScreen = localStorage.getItem("currentScreen");
     if (savedScreen && document.getElementById(savedScreen)) {
@@ -114,6 +115,7 @@ window.onload = function () {
     }
 };
 
+// Call createScreen() function to create screens for the program
 createScreen(
     "FirstDayofSchool",
     "StockdalePhotos/ynbedroom1.jpg",
