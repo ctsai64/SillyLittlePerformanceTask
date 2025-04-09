@@ -108,7 +108,7 @@ createScreen(
 createScreen(
     "Detention",
     "StockdalePhotos/schoolhall1.jpg",
-    "You decide to roam the halls for a little while.|You then hear footsteps approaching from around the corner."
+    "You decide to roam the halls for a little while.|You then hear footsteps approaching from around the corner.",
     [
         { text: "Next?", destination: "DetentionEnd" }
     ]
