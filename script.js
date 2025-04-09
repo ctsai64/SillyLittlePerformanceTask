@@ -19,7 +19,7 @@ function createScreen(id, imagePath, text, choices) {
     screen.className = "screen";
     // Process text argument for display
     const lines = text.split('|');
-    const textContent = lines.map(line => {
+    const textContent = lines.map((line, index) => {
         // Split long lines into multiple lines if they exceed 100 characters
         const wrappedLines = [];
         let currentLine = '';
@@ -36,7 +36,7 @@ function createScreen(id, imagePath, text, choices) {
             wrappedLines.push(currentLine.trim());
         }
         return wrappedLines.map(wrappedLine => 
-            `<div>${wrappedLine}</div>`
+            `<div class="type-anim" style="--length: ${wrappedLine.length}; --delay: ${index * 2}s;">${wrappedLine}</div>`
         ).join('');
     }).join('');
     // Define content inside screen container as HTML elements
@@ -123,7 +123,7 @@ window.onload = function () {
         document.getElementById(savedScreen).style.display = "grid";
         if (savedScreen != "start") {
             document.getElementById(savedScreen).style.display = "grid";
-            document.getElementById(to).style.animation = "none";
+            document.getElementById(savedScreen).style.animation = "none";
             document.getElementById("start").style.display = "none";
             const typeAnims = document.getElementById(savedScreen).querySelectorAll('.text .type-anim');
             typeAnims.forEach((anim, index) => {
@@ -139,7 +139,7 @@ window.onload = function () {
 createScreen(
     "FirstDayofSchool",
     "StockdalePhotos/ynbedroom1.jpg",
-    "Todays the first day of senior year!|You wake up, put on your nicest outfit, gather your  belongings, and head out.|You arrive on campus after walking for a few minutes. You’re reminded that your first period class is…AP Bio. Ugh. |You conjure up the genius idea to simply skip class! What will you do?",
+    "Todays the first day of senior year!|You wake up, put on your nicest outfit, gather your  belongings, and head out.|You arrive on campus after walking for a few minutes. You're reminded that your first period class is…AP Bio. Ugh. |You conjure up the genius idea to simply skip class! What will you do?",
     [
         { text: "Yes, go to school.", destination: "APBio" },
         { text: "No, don't go to school.", destination: "Detention" }
@@ -158,7 +158,7 @@ createScreen(
 createScreen(
     "DetentionEnd",
     "StockdalePhotos/black.jpg",
-    "Teacher:  Where do you think YOU’RE going?! [BAD ENDING]",
+    "Teacher:  Where do you think YOU'RE going?! [BAD ENDING]",
     [
         { text: "Start Over?", destination: "start"}
     ]
@@ -177,7 +177,7 @@ createScreen(
 createScreen(
     "SitWithDante",
     "StockdalePhotos/danteclassroom.jpg",
-    "Dante: Hey mamas what’s good? 😉|You: Um…|Dante: Th’names Dante. Like that guy with the inferno yk??|You: For sureeee|Dante: Lit. Say, I got a game later this week for homecoming. You should totally slide 😝",
+    "Dante: Hey mamas what's good? 😉|You: Um…|Dante: Th'names Dante. Like that guy with the inferno yk??|You: For sureeee|Dante: Lit. Say, I got a game later this week for homecoming. You should totally slide 😝",
     [
         { text: "Nah", destination: "NoToDante" },
         { text: "Sureeee", destination: "SureToDante" },
@@ -197,7 +197,7 @@ createScreen(
 createScreen(
     "YesToDante",
     "StockdalePhotos/danteclassroom.jpg",
-    "Dante: Fyeeeee! I’ll see u there ahaha 😘",
+    "Dante: Fyeeeee! I'll see u there ahaha 😘",
     [
         { text: "Next", destination: "YESFootball" },
     ]

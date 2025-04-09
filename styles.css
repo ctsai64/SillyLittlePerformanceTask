@@ -55,7 +55,7 @@ body {
     font-family: monospace;
     width: 0;
     height: fit-content;
-    animation: typing 2s steps(var(--char)) forwards;
+    animation: typing 2s steps(var(--length)) forwards;
     white-space: nowrap;
     overflow: hidden;
     font-family: monospace;
@@ -63,10 +63,19 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
+    opacity: 0;
+    animation-delay: var(--delay, 0s);
 }
+
 @keyframes typing {
-    from { width: 0; }
-    to { width: calc(var(--char) * 1ch); }
+    from { 
+        width: 0;
+        opacity: 1;
+    }
+    to { 
+        width: calc(var(--length) * 1ch);
+        opacity: 1;
+    }
 }
 
 /* button element styles adapted from Uiverse.io by Madflows */
