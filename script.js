@@ -6,6 +6,7 @@
 
 // createScreen() function creates different HTML elements to represent screens in the story
 // A screen is a div container element containing an div to display image, div for text, and div for choice buttons
+// Function is called manually in the program to create screens
 // Parameters:
 //    id (str) - unique identifier of the screen
 //    imagePath (str) - path to image to be displayed on screen
@@ -34,10 +35,16 @@ function createScreen(id, imagePath, text, choices) {
     for (var choice of choices) {
         choicesDiv.innerHTML += `<button onClick="switchScreen('${id}', '${choice.destination}')">${choice.text}</button>`;
     }
+    // Add choices div to screen container and screen container to the body of the program
     screen.appendChild(choicesDiv);
     document.body.appendChild(screen);
 }
 
+// switchScreen() function dynamically switches which screen containers are displayed to the user
+// Function is called on click of any of the choice buttons
+// Parameters:
+//    from (str) - unique identifier of screen a button is associated with
+//    to (str) - unique identifier of screen to be displayed when button is clicked
 function switchScreen(from, to) {
     document.getElementById(from).style.animation = "fade 1s forwards";
     setTimeout(() => {
@@ -86,13 +93,19 @@ function addHeart() {
     setTimeout(removeHearts, 1000);
 }
 var h = setInterval(addHeart, 500);
-//End of adapted code
+// END OF ADAPTED CODE
 
 window.onload = function () {
     const savedScreen = localStorage.getItem("currentScreen");
     if (savedScreen && document.getElementById(savedScreen)) {
         h = setInterval(addHeart, 500);
-        switchScreen("start", savedScreen);
+        document.getElementById(savedScreen).style.display = "grid";
+        document.getElementById("start").style.display = "none";
+        const typeAnims = document.getElementById(to).querySelectorAll('.text .type-anim');
+        typeAnims.forEach((anim, index) => {
+            setTimeout(() => {anim.style.setProperty('--char', anim.textContent.length);}, index * 2000);
+        });
+        localStorage.setItem("currentScreen", to);
         document.getElementById(savedScreen).style.display = "grid";
         if (savedScreen != "start") {
             document.getElementById("start").style.display = "none";
