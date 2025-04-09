@@ -141,7 +141,7 @@ window.onload = function () {
 createScreen(
     "FirstDayofSchool",
     "StockdalePhotos/ynbedroom1.jpg",
-    "Todays the first day of senior year!|You wake up, put on your nicest outfit, gather your  belongings, and head out.|You arrive on campus after walking for a few minutes. You're reminded that your first period class is…AP Bio. Ugh. |You conjure up the genius idea to simply skip class! What will you do?",
+    "Todays the first day of senior year! You wake up, put on your nicest outfit, gather your  belongings, and head out.You arrive on campus after walking for a few minutes. You’re reminded that your first period class is…AP Bio. Ugh. You conjure up the genius idea to simply skip class! What will you do? ",
     [
         { text: "Yes, go to school.", destination: "APBio" },
         { text: "No, don't go to school.", destination: "Detention" }
@@ -169,7 +169,7 @@ createScreen(
 createScreen(
     "APBio",
     "StockdalePhotos/danteglennclassroom.jpg",
-    "You arrive to class just as the bell rings. You notice that every seat is taken except for two.|One is next to a blonde, sporty-looking young man. The other is next to a guy who looks like| the stereotypical nerd. Who do you sit with?",
+    "You arrive to class just as the bell rings. You notice that every seat is taken except for two. One is next to a blonde, sporty-looking young man. The other is next to a guy who looks like the stereotypical nerd. Who do you sit with?",
     [
         { text: "Geek", destination: "SitWithGlenn" },
         { text: "Jock", destination: "SitWithDante" }
@@ -285,8 +285,8 @@ createScreen(
     "StockdalePhotos/dantefield.jpg",
     "You arrive at the field, sit down, and watch the game play out.|Dante manages to score a touchdown right as the final quarter wraps up!|Dante: Yoooo did you see that dawg??? I COOKED them lol|You: You sure did!|Dante:Say, wanna go get something to chow down on? I sure am hungry after carrying this entire team on my back.",
     [
-        { text: "Nope, I'm going home.", destination: "Sleep" },
-        { text: "Yeah", destination: "Diner" }
+        { text: "I'll pass.", destination: "Sleep" },
+        { text: "Of course!", destination: "Diner" }
     ]
 );
 
