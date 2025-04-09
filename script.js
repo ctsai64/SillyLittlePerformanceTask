@@ -4,6 +4,13 @@
 //  Users are immersed in the story as a character interacting with other charactars.
 //  Throughout the program, the user is presented with choices, allowing the user to control their own fate within the program.
 
+// createScreen() function creates different HTML elements to represent screens in the story
+// A screen is a div container element containing an div to display image, div for text, and div for choice buttons
+// Parameters:
+//    id (str) - unique identifier of the screen
+//    imagePath (str) - path to image to be displayed on screen
+//    text (str) - text to be displayed with screen
+//    choices (list)- list of dictionary containing the text to be diplayed on choice button and destination screen from clicking the button
 function createScreen(id, imagePath, text, choices) {
     const screen = document.createElement("div");
     screen.id = id;
