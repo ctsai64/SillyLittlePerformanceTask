@@ -24,7 +24,7 @@ function createScreen(id, imagePath, text, choices) {
 }
 
 function switchScreen(from, to) {
-    //document.getElementById(from).style.amimation = "fade 1s forwards";
+    //document.getElementById(from).style.animation = "fade 1s forwards";
     document.getElementById(to).style.display = "grid";
     document.getElementById(from).style.display = "none";
     const typeAnims = document.getElementById(to).querySelectorAll('.text .type-anim');
