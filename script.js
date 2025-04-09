@@ -12,11 +12,14 @@
 //    text (str) - text to be displayed with screen
 //    choices (list)- list of dictionary containing the text to be diplayed on choice button and destination screen from clicking the button
 function createScreen(id, imagePath, text, choices) {
+    // Create screen container element and assign properties
     const screen = document.createElement("div");
     screen.id = id;
     screen.className = "screen";
+    // Process text argument for display
     const lines = text.split('|');
     const textContent = lines.map(line => `<div class="type-anim">${line}</div>`).join('');
+    // Define content inside screen container as HTML elements
     screen.innerHTML = `
     <div class="content">
         <img src="${imagePath}" style="height: -webkit-fill-available; object-fit: cover;">
@@ -24,8 +27,10 @@ function createScreen(id, imagePath, text, choices) {
     <div class="text">${textContent}</div>
     <button onClick="switchScreen('${id}', 'start')" style="position: fixed; align-self: normal; font-size: smaller; width: min-content; padding: 10px;">Start Over</button>
     `;
+    // Create div for choices and assign properties to be added to the screen container
     const choicesDiv = document.createElement("div");
     choicesDiv.className = "choices";
+    // Loop through list of choices, for each choice in the list of given choices, create a button element to be added to the screen
     for (var choice of choices) {
         choicesDiv.innerHTML += `<button onClick="switchScreen('${id}', '${choice.destination}')">${choice.text}</button>`;
     }
