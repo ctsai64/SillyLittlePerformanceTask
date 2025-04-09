@@ -35,9 +35,11 @@ function createScreen(id, imagePath, text, choices) {
         if (currentLine) {
             wrappedLines.push(currentLine.trim());
         }
-        return wrappedLines.map(wrappedLine => 
-            `<div class="type-anim" style="--length: ${wrappedLine.length}; --delay: ${index * 2}s;">${wrappedLine}</div>`
-        ).join('');
+        return wrappedLines.map(wrappedLine => {
+            // Calculate duration based on text length (20ms per character)
+            const duration = wrappedLine.length * 0.02;
+            return `<div class="type-anim" style="--length: ${wrappedLine.length}; --duration: ${duration}s; --delay: ${index * 2}s;">${wrappedLine}</div>`;
+        }).join('');
     }).join('');
     // Define content inside screen container as HTML elements
     screen.innerHTML = `

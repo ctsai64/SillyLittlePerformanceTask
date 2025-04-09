@@ -49,13 +49,13 @@ body {
     animation: pulse 1.5s infinite;
 }
 
-/* typing animation from CodePen by Marko */
+/* typing animation */
 .type-anim {
     display: block;
     font-family: monospace;
     width: 0;
     height: fit-content;
-    animation: typing 2s steps(var(--length)) forwards;
+    animation: typing var(--duration) steps(var(--length)) forwards;
     white-space: nowrap;
     overflow: hidden;
     font-family: monospace;
