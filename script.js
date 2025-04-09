@@ -95,7 +95,7 @@ function addHeart() {
 var h = setInterval(addHeart, 500);
 // END OF ADAPTED CODE
 
-
+// Event listener to load in user's saved screen when the page loads
 window.onload = function () {
     const savedScreen = localStorage.getItem("currentScreen");
     if (savedScreen && document.getElementById(savedScreen)) {
