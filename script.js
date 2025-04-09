@@ -1,5 +1,8 @@
 //  Begin Javascript Code File
 //  ALL CODE WRITTEN BY CYMBERLY TSAI AND VI COVRLJAN UNLESS OTHERWISE STATED
+//  This program is inteaded to provide entertaiment to users through creative story telling.
+//  Users are immersed in the story as a character interacting with other charactars.
+//  Throughout the program, the user is presented with choices, allowing the user to control their own fate within the program.
 
 function createScreen(id, imagePath, text, choices) {
     const screen = document.createElement("div");
