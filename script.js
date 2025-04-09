@@ -24,7 +24,15 @@ function createScreen(id, imagePath, text, choices) {
 }
 
 function switchScreen(from, to) {
-    document.getElementById(from).style.amimation = "fade 1s forwards";
+    //document.getElementById(from).style.amimation = "fade 1s forwards";
+    document.getElementById(to).style.display = "grid";
+    document.getElementById(from).style.display = "none";
+    const typeAnims = document.getElementById(to).querySelectorAll('.text .type-anim');
+    typeAnims.forEach((anim, index) => {
+        setTimeout(() => {anim.style.setProperty('--char', anim.textContent.length);}, index * 2000);
+    });
+    localStorage.setItem("currentScreen", to);
+    /*
     setTimeout(() => {
         document.getElementById(to).style.display = "grid";
         document.getElementById(from).style.display = "none";
@@ -34,6 +42,7 @@ function switchScreen(from, to) {
         });
         localStorage.setItem("currentScreen", to);
     }, 1000);
+    */
 }
 
 // Background animation adapted from Binary Beats from Medium
