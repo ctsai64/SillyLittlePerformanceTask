@@ -305,7 +305,7 @@ createScreen(
     "StockdalePhotos/danteglennhallway.jpg",
     "You arrive at school to see that homecoming tickets are on sale. You see Dante talking to that nerdy kid in your Bio class. They seem to be having a great discussion, bright smiles illuminating across both of their faces. You decide to not interrupt their conversation and buy a ticket.",
     [
-        { text: "Next", destination: "DantexGlenn", next: "" }
+        { text: "Next", destination: "DanteXGlenn", next: "" }
     ]
 )
 
