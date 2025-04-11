@@ -14,84 +14,61 @@
 //    choices (list)- list of dictionary containing the text to be diplayed on choice button and destination screen from clicking the button
 function createScreen(id, imagePath, text, choices) {
     // Create screen container element and assign properties
-    const screen = document.createElement("div");
+    var screen = document.createElement("div");
     screen.id = id;
     screen.className = "screen";
-    // Process text argument for display
-    const lines = text.split('|');
-    const textContent = lines.map((line, index) => {
-        // Split long lines into multiple lines if they exceed 100 characters
-        const wrappedLines = [];
-        let currentLine = '';
-        const words = line.split(' ');
-        for (const word of words) {
+    // Define content inside screen container as HTML elements
+    screen.innerHTML = `
+    <div class="content">
+        <img src="${imagePath}" style="height: -webkit-fill-available; object-fit: cover;">
+    </div>
+    <div id="text">${textProcessor(text)}</div>
+    <button onClick="switchScreen('${id}', 'start')" style="position: fixed; align-self: normal; font-size: smaller; width: min-content; padding: 10px;">Start Over</button>
+    `;
+    // Create div for choices and assign properties to be added to the screen container
+    const choicesDiv = document.createElement("div");
+    choicesDiv.id = "choices";
+    // Loop through list of choices, for each choice in the list of given choices, create a button element to be added to the screen
+    for (var choice of choices) {
+        choicesDiv.innerHTML += `<button onClick="nextText('${id}', '${choice.destination}', '${choice.next}')">${choice.text}</button>`;
+    }
+    // Add choices div to screen container and screen container to the body of the program
+    screen.appendChild(choicesDiv);
+    document.body.appendChild(screen);
+}
+
+function textProcessor(inputText) {
+    var lines = inputText.split('|');
+    var processed = lines.map((line) => {
+        var splitLines = [];
+        var currentLine = '';
+        var words = line.split(' ');
+        for (var word of words) {
             if ((currentLine + word).length > 100) {
-                wrappedLines.push(currentLine.trim());
+                splitLines.push(currentLine.trim());
                 currentLine = word;
             } else {
                 currentLine += (currentLine ? ' ' : '') + word;
             }
         }
         if (currentLine) {
-            wrappedLines.push(currentLine.trim());
+            splitLines.push(currentLine.trim());
         }
-        return wrappedLines.map(wrappedLine => {
-            // Calculate duration based on text length (20ms per character)
-            const duration = wrappedLine.length * 0.02;
-            return `<div class="type-anim" style="--length: ${wrappedLine.length}; --duration: ${duration}s; --delay: ${index * 2}s;">${wrappedLine}</div>`;
+        return splitLines.map(splitLine => {
+            return `<div class="type-anim" style="--length: ${splitLine.length}; --duration: ${splitLine.length * 0.02}s;">${splitLine}</div>`;
         }).join('');
     }).join('');
-    // Define content inside screen container as HTML elements
-    screen.innerHTML = `
-    <div class="content">
-        <img src="${imagePath}" style="height: -webkit-fill-available; object-fit: cover;">
-    </div>
-    <div class="text">${textContent}</div>
-    <button onClick="switchScreen('${id}', 'start')" style="position: fixed; align-self: normal; font-size: smaller; width: min-content; padding: 10px;">Start Over</button>
-    `;
-    // Create div for choices and assign properties to be added to the screen container
-    const choicesDiv = document.createElement("div");
-    choicesDiv.className = "choices";
-    // Loop through list of choices, for each choice in the list of given choices, create a button element to be added to the screen
-    for (var choice of choices) {
-        const button = document.createElement("button");
-        button.textContent = choice.text;
-        button.onclick = function() {
-            // Hide all choice buttons
-            choicesDiv.style.display = "none";
-            
-            // Create and show the next text with animation
-            const nextTextDiv = document.createElement("div");
-            nextTextDiv.className = "next-text";
-            const nextLines = choice.next.split('|');
-            const nextTextContent = nextLines.map((line, index) => {
-                const duration = line.length * 0.02;
-                return `<div class="type-anim" style="--length: ${line.length}; --duration: ${duration}s; --delay: ${index * 2}s;">${line}</div>`;
-            }).join('');
-            nextTextDiv.innerHTML = nextTextContent;
-            
-            // Add the next text to the text container
-            const textContainer = screen.querySelector('.text');
-            textContainer.appendChild(nextTextDiv);
-            
-            // Create and show the next button after animation
-            const nextButton = document.createElement("button");
-            nextButton.textContent = "Next";
-            nextButton.onclick = function() {
-                switchScreen(id, choice.destination);
-            };
-            
-            // Add the next button after all animations are complete
-            const totalAnimationTime = nextLines.reduce((acc, line) => acc + (line.length * 0.02), 0) + (nextLines.length * 2);
-            setTimeout(() => {
-                textContainer.appendChild(nextButton);
-            }, totalAnimationTime * 1000);
-        };
-        choicesDiv.appendChild(button);
+    return processed;
+}
+
+function nextText(id, to, nextText){
+    if (nextText == "") {
+        switchScreen(id, to);
+    }else{
+        console.log(nextText);
+        document.getElementById("text").innerHTML = textProcessor(nextText);
+        document.getElementById("choices").innerHTML = `<button onClick="switchScreen('${id}', '${to}')">Next</button>`;
     }
-    // Add choices div to screen container and screen container to the body of the program
-    screen.appendChild(choicesDiv);
-    document.body.appendChild(screen);
 }
 
 // switchScreen() function dynamically switches which screen containers are displayed to the user
@@ -152,7 +129,7 @@ var h = setInterval(addHeart, 500);
 
 // Event listener to load in user's saved screen when the page loads
 window.onload = function () {
-    const savedScreen = localStorage.getItem("currentScreen");
+    var savedScreen = localStorage.getItem("currentScreen");
     if (savedScreen && document.getElementById(savedScreen)) {
         h = setInterval(addHeart, 500);
         document.getElementById(savedScreen).style.display = "grid";
@@ -176,8 +153,8 @@ createScreen(
     "StockdalePhotos/ynbedroom1.jpg",
     "Todays the first day of senior year! You wake up, put on your nicest outfit, gather your  belongings, and head out.You arrive on campus after walking for a few minutes. You're reminded that your first period class is…AP Bio. Ugh. You conjure up the genius idea to simply skip class! What will you do? ",
     [
-        { text: "Yes, go to school.", destination: "APBio", next: "" },
-        { text: "No, don't go to school.", destination: "Detention", next: "" }
+        { text: "Yes, go to school.", destination: "APBio", next: "-" },
+        { text: "No, don't go to school.", destination: "Detention", next: "-" }
     ]
 );
 
