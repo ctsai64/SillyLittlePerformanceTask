@@ -43,6 +43,8 @@ function createScreen(id, imagePath, text, choices) {
     choiceId += 2;
 }
 
+// textProcessor() function processes the text to be displayed on the screen
+// Function is called in createScreen() to format the text to be displayed on the screen
 function textProcessor(inputText) {
     var lines = inputText.split('|');
     var processed = lines.map((line) => {
@@ -67,6 +69,15 @@ function textProcessor(inputText) {
     return processed;
 }
 
+// nextText() function dynamically switches the text and choice buttons displayed to the user then navigates to the next screen
+// Function is called on click of any of the choice buttons
+// Parameters:
+//    id (str) - unique identifier of screen a button is associated with
+//    tId (str) - unique identifier of text div to be updated
+//    cId (str) - unique identifier of choice div to be updated
+//    to (str) - unique identifier of screen to be displayed when button is clicked
+//    nextText (str) - text to be displayed on the screen after the button is clicked
+// If nextText is empty, the screen will be switched to the next screen immediately
 function nextText(id, tId, cId, to, nextText){
     if (nextText == "") {
         switchScreen(id, to);
