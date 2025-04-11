@@ -52,7 +52,7 @@ function textProcessor(inputText) {
         var currentLine = '';
         var words = line.split(' ');
         for (var word of words) {
-            if ((currentLine + word).length > 130) {
+            if ((currentLine + word).length > 120) {
                 splitLines.push(currentLine.trim());
                 currentLine = word;
             } else {
