@@ -12,6 +12,9 @@
 //    imagePath (str) - path to image to be displayed on screen
 //    text (str) - text to be displayed with screen
 //    choices (list)- list of dictionary containing the text to be diplayed on choice button and destination screen from clicking the button
+
+var textId = 0;
+var choiceId = 1;
 function createScreen(id, imagePath, text, choices) {
     // Create screen container element and assign properties
     var screen = document.createElement("div");
@@ -22,19 +25,22 @@ function createScreen(id, imagePath, text, choices) {
     <div class="content">
         <img src="${imagePath}" style="height: -webkit-fill-available; object-fit: cover;">
     </div>
-    <div id="text">${textProcessor(text)}</div>
+    <div id="${textId}" class="text">${textProcessor(text)}</div>
     <button onClick="switchScreen('${id}', 'start')" style="position: fixed; align-self: normal; font-size: smaller; width: min-content; padding: 10px;">Start Over</button>
     `;
     // Create div for choices and assign properties to be added to the screen container
     const choicesDiv = document.createElement("div");
-    choicesDiv.id = "choices";
+    choicesDiv.id = choiceId;
+    choicesDiv.className = "choices";
     // Loop through list of choices, for each choice in the list of given choices, create a button element to be added to the screen
     for (var choice of choices) {
-        choicesDiv.innerHTML += `<button onClick="nextText('${id}', '${choice.destination}', '${choice.next}')">${choice.text}</button>`;
+        choicesDiv.innerHTML += `<button onClick="nextText('${id}', '${textId}', '${choiceId}', '${choice.destination}', '${choice.next}')">${choice.text}</button>`;
     }
     // Add choices div to screen container and screen container to the body of the program
     screen.appendChild(choicesDiv);
     document.body.appendChild(screen);
+    textId += 2;
+    choiceId += 2;
 }
 
 function textProcessor(inputText) {
@@ -61,13 +67,12 @@ function textProcessor(inputText) {
     return processed;
 }
 
-function nextText(id, to, nextText){
+function nextText(id, tId, cId, to, nextText){
     if (nextText == "") {
         switchScreen(id, to);
     }else{
-        console.log(nextText);
-        document.getElementById("text").innerHTML = textProcessor(nextText);
-        document.getElementById("choices").innerHTML = `<button onClick="switchScreen('${id}', '${to}')">Next</button>`;
+        document.getElementById(tId).innerHTML = textProcessor(nextText);
+        document.getElementById(cId).innerHTML = `<button onClick="switchScreen('${id}', '${to}')">Next</button>`;
     }
 }
 
@@ -153,8 +158,8 @@ createScreen(
     "StockdalePhotos/ynbedroom1.jpg",
     "Todays the first day of senior year! You wake up, put on your nicest outfit, gather your  belongings, and head out.You arrive on campus after walking for a few minutes. You're reminded that your first period class is…AP Bio. Ugh. You conjure up the genius idea to simply skip class! What will you do? ",
     [
-        { text: "Yes, go to school.", destination: "APBio", next: "-" },
-        { text: "No, don't go to school.", destination: "Detention", next: "-" }
+        { text: "Yes, go to school.", destination: "APBio", next: "" },
+        { text: "No, don't go to school.", destination: "Detention", next: "" }
     ]
 );
 
@@ -170,7 +175,7 @@ createScreen(
 createScreen(
     "DetentionEnd",
     "StockdalePhotos/black.jpg",
-    "Teacher:  Where do you think YOU'RE going?! [BAD ENDING]",
+    "Teacher:  Where do you think YOU'RE going?!",
     [
         { text: "Start Over?", destination: "start", next: "" }
     ]
@@ -191,36 +196,9 @@ createScreen(
     "StockdalePhotos/danteclassroom.jpg",
     "Dante: Hey mamas what's good? 😉|You: Um…|Dante: Th'names Dante. Like that guy with the inferno yk??|You: For sureeee|Dante: Lit. Say, I got a game later this week for homecoming. You should totally slide 😝",
     [
-        { text: "Nah", destination: "NoToDante", next: "" },
-        { text: "Sureeee", destination: "SureToDante", next: "" },
-        { text: "Yes!!!", destination: "YesToDante", next: "" }
-    ]
-);
-
-createScreen(
-    "NoToDante",
-    "StockdalePhotos/danteclassroom.jpg",
-    "Dante: zamn ok ig…",
-    [
-        { text: "Next", destination: "UnknownCaller", next: "" }
-    ]
-);
-
-createScreen(
-    "YesToDante",
-    "StockdalePhotos/danteclassroom.jpg",
-    "Dante: Fyeeeee! I'll see u there ahaha 😘",
-    [
-        { text: "Next", destination: "YESFootball", next: "" }
-    ]
-);
-
-createScreen(
-    "SureToDante",
-    "StockdalePhotos/danteclassroom.jpg",
-    "Dante: Ight bet",
-    [
-        { text: "Next", destination: "SureFootball", next: "" }
+        { text: "Nah", destination: "UnknownCaller", next: "Dante: zamn ok ig…" },
+        { text: "Sureeee", destination: "SureFootball", next: "Dante: Ight bet" },
+        { text: "Yes!!!", destination: "YESFootball", next: "Dante: Fyeeeee! I’ll see u there ahaha 😘" }
     ]
 );
 
@@ -234,106 +212,116 @@ createScreen(
 );
 
 createScreen(
-    "UnknownCaller",
-    "StockdalePhotos/ynbedroom1.jpg",
-    "You are at home doing homework when you get a call from |an unknown number asking to meet at a park. |Do you go?",
+    "YESFootball",
+    "StockdalePhotos/dantefield.jpg",
+    "You arrive at the field, sit down, and watch the game play out.|Dante manages to score a touchdown right as the final quarter wraps up!|Dante: Yoooo did you see that dawg??? I COOKED them lol|You: You sure did!|Dante:Say, wanna go get something to chow down on? I sure am hungry after carrying this entire team on my back.",
     [
-        { text: "Yes", destination: "Park", next: "" },
-        { text: "No, that's shady.", destination: "Sleep", next: "" }
+        { text: "I'll pass.", destination: "Sleep", next: "Dante: oh ok|Dante turns around and walks away." },
+        { text: "Of course!", destination: "Diner", next: "Dante: Sweet I’ll give u a ride" }
     ]
 );
+
+createScreen(
+    "UnknownCaller",
+    "StockdalePhotos/ynbedroom1.jpg",
+    "You're in your room about to go to bed when you get a call on your phone from a number you don’t recognize.",
+    [
+        { text: "Don't Pick Up", destination: "Sleep", next: "You think ‘this is MAD shady!’ and turn your phone off. You go to sleep." },
+        { text: "PickUp", destination: "Sleep", next: "" }
+    ]
+);
+
+createScreen(
+    "PickUp",
+    "StockdalePhotos/ynbedroom1.jpg",
+    "You press accept and raise the phone to your ear.|Random Caller: Come to Stockdale Park in 15 minutes.|The caller hangs up after saying this. Will you follow their orders?",
+    [
+        { text: "Yes", destination: "Park", next: "" },
+        { text: "No", destination: "Sleep", next: "You turn your phone off and go to sleep." }
+    ]
+)
 
 createScreen(
     "Sleep",
     "StockdalePhotos/ynbedroom1.jpg",
     "You go to bed.",
     [
-        { text: "Next?", destination: "HocoSale", next: "" }
+        { text: "StartOver?", destination: "start", next: "" }
     ]
 );
 
 createScreen(
     "Park",
     "StockdalePhotos/dantepark.jpg",
-    "You go to the park and see Dante. |He asked your friend for your number.|Creeped out you ask why he called you out here. He says he was intrgiugued by you and would like to get to know yout better. How do you respond?",
+    "You arrive at the park and see Dante approaching you.|Dante: Yooo haha whats poppin? I asked one of your homegirls for your number 🤭 hope ya dont mind.|You: …|Dante: I like… just found you intriguing lowkey… |He sits down at a nearby bench|Dante: Wanna chit chat?",
     [
-        { text: "GET OUT", destination: "NoHoco", next: "" },
-        { text: "sure...?", destination: "HocoDante", next: "" }
-    ]
-);
-
-createScreen(
-    "HocoDante",
-    "StockdalePhotos/dantehoco.jpg",
-    "Yo go to hoco ad are boared. You want to leave bc it's bored, do you leave with dante?",
-    [
-        { text: "For sure twin", destination: "FootballGame", next: "" },
-        { text: "No, ditch him", destination: "NoHoco", next: "" }
-    ]
-);
-
-createScreen(
-    "DanteEnd",
-    "StockdalePhotos/black.jpg",
-    "Good ending with Dante|[GOOD ENDING]",
-    [
-        { text: "Start Over?", destination: "start", next: "" }
+        { text: "Nah, I got bigger fish to fry", destination: "Sleep", next: "Dante: Fine! Be that way 🤬|He gets up and leaves. You return home and go to sleep." },
+        { text: "Sure, let's talk", destination: "AkwardPark", next: "" }
     ]
 );
 
 createScreen(
     "AwkardPark",
     "StockdalePhotos/dantepark.jpg",
-    "Sit with dante in park",
+    "You sit down next to him and wait for him to initiate conversation.|Dante: So like… whats ur type?|You: What kind of question is that??|Dante: idk|You: Ugh. Well I don’t really know. Never thought about it too hard.|Dante: faxxxxxxx me neither ahahahahaha|You:...|Dante:...|You: So you play football, huh?|Dante: Yessss 😁 ball is life bro, you feel me?|You: Mhm.|Dante: Broooo todays game was CRAZY you shouldve seen that touchdown I made in the last quarter.|The two of you talk about football for the next hour, eventually parting ways to go to bed.",
     [
-        { text: "Next", destination: "HocoSale", next: "" }
-    ]
-);
-
-createScreen(
-    "YESFootball",
-    "StockdalePhotos/dantefield.jpg",
-    "You arrive at the field, sit down, and watch the game play out.|Dante manages to score a touchdown right as the final quarter wraps up!|Dante: Yoooo did you see that dawg??? I COOKED them lol|You: You sure did!|Dante:Say, wanna go get something to chow down on? I sure am hungry after carrying this entire team on my back.",
-    [
-        { text: "I'll pass.", destination: "Sleep", next: "" },
-        { text: "Of course!", destination: "Diner", next: "" }
+        { text: "Next", destination: "Diner", next: "" }
     ]
 );
 
 createScreen(
     "Diner",
     "StockdalePhotos/dantediner.jpg",
-    "He drives you to a decent-looking diner. You grab a seat and he immediatly |starts talking about his gae, glazing himself to the max.|He sees that you are bored and asks you about yout hobbies.| How do you respond?",
+    "Dante parks his car in front of a 50’s style diner and leads you in. The two of you sit down and look at the menus.|Dante: This bacon egg n’ cheese sandwich looks BUSS dawg… lowkey might snag one. You?|You: probably just fries.|Dante: littttttt. Did u see how i played out there?? TELL me i aint the goat. First I was like “omg no we’re down a few points we’re gonna fumble this so bad” but then I locked in and was all “I understand it now” and absolutely COOKED the other team|You:...yea|Dante:...|He sees that youre visibly bored by his football talk. After a few seconds, he asks you a question.|Dante: So… what do you do for fun?",
     [
-        { text: "Answer enthusiatically", destination: "Bonding", next: "" },
-        { text: "Be cold", destination: "HocoSale", next: "" }
+        { text: "Nothing rly", destination: "HocoSale2", next: "Dante: oh cool |After your lousy response to Dante wanting to learn more about you, you receive your food and eat in awkward silence.|Dante: That B.E.C. was fire 🤤 Here’s a 10–I gotta bounce.|He slides a 5 dollar bill to you and dashes out of the diner. You call your mom for a ride home and go to bed." },
+        { text: "I like to draw a bit", destination: "HocoSale1", next: "Dante: yooo me too 🔥🔥🔥 Dinosaurs lowk are so fun to doodle|The two of you bond over your shared interest while eating. Dante gives you a ride home and you go to sleep." }
     ]
 );
 
 createScreen(
-    "Bonding",
-    "StockdalePhotos/dantepark.jpg",
-    "You and Dante bond over your mutual love of Pokemon.|Dante gives you his number. Do you later text Dante to go to HOCO?",
+    "HocoSale1",
+    "StockdalePhotos/schoolhall1.jpg",
+    "You arrive at school to see that homecoming tickets are on sale. You remember hearing that dante wanted to go but didn’t have a date. You think of texting him, asking if he’d like to go with you. Do you?",
     [
-        { text: "Sure", destination: "HocoDante", next: "" },
-        { text: "Nah", destination: "NoHoco", next: "" }
+        { text: "Yes", destination: "DanteXGlenn", next: "You text him, asking to go to Homecoming with you. He texts back almost immediately, cheerfully agreeing to coming!" },
+        { text: "No", destination: "Sleep", next: "You decide that tickets are a waste of money and that school dances are a waste of time, so you pass on your last opportunity to attend." }
     ]
 );
 
 createScreen(
-    "HocoSale",
+    "HocoSale2",
     "StockdalePhotos/danteglennhallway.jpg",
-    "HOCO tickets are on sale! In class a few days later, you see Dante with Glenn, who is vibrantly smilig.|You buy a ticket, avoiding any interaction with the two.|It's the afternoon before HOCO. Do you go?",
+    "You arrive at school to see that homecoming tickets are on sale. You see Dante talking to that nerdy kid in your Bio class. They seem to be having a great discussion, bright smiles illuminating across both of their faces. You decide to not interrupt their conversation and buy a ticket.",
     [
-        { text: "Ya", destination: "DanteXGlenn", next: "" },
-        { text: "No", destination: "NoHoco", next: "" }
+        { text: "Next", destination: "DantexGlenn", next: "" }
     ]
-);
+)
 
 createScreen(
     "DanteXGlenn",
     "StockdalePhotos/danteglennhoco.jpg",
-    "Dante takes glenn to prom. |[BAD ENDING]",
+    "You arrive a bit late to homecoming, taking a seat at the bleachers in hopes that Dante finds you. Instead, to your surprise, you see Dante and the nerd from before dancing together. You think nothing of it at first, excusing it as friends dancing together, until Dante leans into the other for a passionate kiss on the lips.",
+    [
+        { text: "Start Over?", destination: "start", next: "" }
+    ]
+);
+
+
+createScreen(
+    "HocoDante",
+    "StockdalePhotos/dantehoco.jpg",
+    "The night of homecoming, Dante picks you up and drives the two of you there. After only about half an hour of dancing, you get bored and desperate for some fresh air. Youre leaving this jawn eventually, regardless of if Dante wants to come with you. Will you ditch him, or ask him to leave Homecoming with you?",
+    [
+        { text: "Ditch Him", destination: "Sleep", next: "" },
+        { text: "Ask Him to Come", destination: "DanteEnd", next: "You: Hey, wanna dip? This sucks.|Dante: highkey ur right. Lets skidaddle 🥳" }
+    ]
+);
+
+createScreen(
+    "DanteEnd",
+    "StockdalePhotos/black.jpg",
+    "The two of you leave HOCO and go bowling.",
     [
         { text: "Start Over?", destination: "start", next: "" }
     ]
@@ -342,94 +330,85 @@ createScreen(
 createScreen(
     "SitWithGlenn",
     "StockdalePhotos/glennclassroom.jpg",
-    "You sit with Glenn. He doesn't say anything.|You are assigned a project to review biology from last year and Glenn is your partner.|You both agree to meet up to work after school. Where do you meet?",
+    "You take a seat next to four-eyes. He doesn’t say anything, just keeps reading his book titled “Sir Isaac Newton's Mathematical Principles of Natural Philosophy and His System of the World.”|You: Hey… what’s your name?|Glenn: I am, if you must know, called Glenn.|You:..|Glenn:...|You: What are you reading?|Glenn: “Sir Isaac Newton's Mathematical Principles of Natural Philosophy and His System of the World,” are you, perchance, illiterate?|You: Sorry…|The two of you sit in silence until the end of the period, which is concluded by your teacher announcing a mini-project to review content from last year. Glenn is your partner since you share a table.",
     [
-        { text: "Your House", destination: "YourHouse", next: "" },
-        { text: "His House", destination: "GlennHouse", next: "" },
-        { text: "Library", destination: "Library", next: "" }
+        { text: "Next", destination: "GlennHallway", next: "" },
+    ]
+);
+
+createScreen(
+    "GlennHallway",
+    "StockdalePhotos/glennhallway1.jpg",
+    "Glenn: And where, pray tell, do you suggest we begin our undertaking?"
+    [
+        { text: "Your House", destination: "YourHouse", next: "Glenn: Very well, then. Until we meet again." },
+        { text: "His House", destination: "GlennHouse", next: "Glenn: Very well, then. Until we meet again." },
+        { text: "Library", destination: "Library", next: "Glenn: Very well, then. Until we meet again." }
     ]
 );
 
 createScreen(
     "YourHouse",
     "StockdalePhotos/glenn.ynhouse.jpg",
-    "Glenn arrives at your house, well-dressed and smiling. |You invite him inside and begin working. You and Glenn enter your room. Glenn points out your Pokemon poster |and begins talking passionately about it. |Do you shut him up?",
+    "You’re in your bedroom doing homework when you hear knocking at the door. You go downstairs and open the door to see Glenn in a nice outfit, like he was going out to dinner.|Glenn: Let us proceed with the matter at hand, shall we?|You: Yup.|You lead Glenn to your bedroom. You sit on the floor and get out the supplies you need for your assignment. You see Glenn staring at your Pokemon poster with admiration.|Glenn: Good heavens–a Pokemon poster! How utterly delightful; I simply ADORE Pokemon!|He starts yapping about random Pokemon trivia, most of which was niche knowledge only a dedicated fan would know. You try to keep working as he spews words, but its too distracting. What do you do?",
     [
-        { text: "naur", destination: "AskHoco", next: "" },
-        { text: "yea", destination: "GlennWorkingSad", next: "" }
+        { text: "Shut Him Up", destination: "Present", next: "You: Zip it. We need to focus.|Glenn: Very well, my sincerest apologies. Let us embark with the task at hand.|The two of you manage to finish the project in only an hour, mainly since Glenn didn’t speak for the entire work session. Once he leaves, you finish your homework and head to bed." },
+        { text: "Chat With Him", destination: "AskHoco", next: "You: Have you seen Imakuni’s Doduo? Cool card, isnt it?|Glenn: Ah, yes! Imakuni’s Doduo! What a splendid card. It graces my personal collection, of course.|The two of you barely get any work done, spending the majority of your time together talking about Pokemon." }
     ]
 );
+
+createScreen(
+    "Present",
+    "StockdalePhotos/schoolhallway1.jpg",
+    "The next day, the two of you present your project and earn As on it. You leave class and see that homecoming tickets are now on sale. Having no one to take with you, you decide to skip it.",
+    [
+        { text: "Next", destination: "Sleep", next: "" }
+    ]
+)
 
 createScreen(
     "GlennHouse",
     "StockdalePhotos/glennglennhouse.jpg",
-    "You go to Glenn's house and enter his room, which is cluttered with| space and dinosaur decorations (the nerdy kinds).| He seems embarrassed, what do you say?",
+    "Your mom drops you off in front of a large colonial-style house with quartz fountains and freshly-trimmed hedges decorating the yard. You knock on the door and await a response. Glenn opens the door and grants you entry.|Glenn: Welcome to my humble abode! Do come along–my quarters are right this way!|The two of you enter his room. You’re immediately bombarded with a rather impressive array of dinosaur-related items, such as diagrams and models. Gosh, this kid is a nerd. You look over at Glenn, his face visibly a bright red from what you assume to be embarrassment. You should probably say something.",
     [
-        { text: "Clown his goofy ahh room.", destination: "GlennHouseSad", next: "" },
-        { text: "You tease him in a good-humored way.", destination: "GlennHouseRizz", next: "" }
-    ]
-);
-
-createScreen(
-    "NoHoco",
-    "StockdalePhotos/black.jpg",
-    "You stay home from HOCO [normal ending]",
-    [
-        { text: "Start Over?", destination: "start", next: "" }
-    ]
-);
-
-createScreen(
-    "GlennWorkingSad",
-    "StockdalePhotos/glennglennhouse.jpg",
-    "Glenn doesn't respond, staying quiet for the rest of the time you guys work.",
-    [
-        { text: "Next?", destination: "NoHoco", next: "" }
-    ]
-);
-
-createScreen(
-    "GlennHouseRizz",
-    "StockdalePhotos/glennglennhouse.jpg",
-    "Glenn feels a little ambaressed about his room, |but you two get to work and Glenn remains talkative.",
-    [
-        { text: "Next", destination: "HocoAsk", next: "" }
+        { text: "Insult", destination: "Present", next: "You: Jeez, did you decorate this place or carbon date it?|Glenn looks away, looking even more uncomfortable than before.|Glenn: Let us simply attend to the task without further delay.|The two of you finished your project in a few hours, barely speaking the entire time." },
+        { text: "Compliment", destination: "AskHoco", next: "You: Your room is pretty cool|Glenn’s expression immediately lightens.|Glenn: Why, thank you! I do try to curate an atmosphere of refined eccentricity.|You and Glenn work on your project until sunset, talking about your interests and hobbies. You leave his place with a far better opinion on him than you did before." }
     ]
 );
 
 createScreen(
     "Library",
     "StockdalePhotos/glennlibrary.jpg",
-    "Glenn meets you at a table in the library. You get to work when someone |yells his name across the room. It's Gabe, a jock known for picking on people. |Glenn and Gabe go back and forth until Glenn looks ready to throw a punch. |Intervene?",
+    "After school, you meet up with glenn in the library to work on your assignment. You both sit down and get to work, chit chatting a bit here and there, until you hear a loud voice coming from behind you.|???: Hey Glenn! How’s it going?|You turn around to see a shorter dude in a yellow turtleneck approaching your table.",
     [
-        { text: "Lol no", destination: "Fight", next: "" },
-        { text: "Ya", destination: "Intervention", next: "" }
+        { text: "Next", destination: "GlennGabeLibrary", next: "" },
     ]
 );
 
 createScreen(
-    "Intervention",
+    "GlennGabeLibrary",
     "StockdalePhotos/glenngabelibrary.jpg",
-    "You get between the two and break up the fight. Gabe insults you and Glenn |and walks away. Glenn thanks you for standing up for him and you continue working.",
+    "Glenn: Please remove yourself from our presence, Gabe.|Gabe: Not until you pay me back.|Glenn: As I’ve already made abundantly clear, I am under no obligation to furnish you with anything whatsoever. Good day.|Glenn gathers his belongings and gets up. You do the same and follow him to another area, but Gabe blocks his path.|Gabe: Ummmm? Where do you think you’re going?|He gives Glenn a shove, knocking a few things out of his grasp. Glenn puts the rest of his stuff on a table and storms back towards Gabe. Looks like a fight is about to ensue– what do you do?",
     [
-        { text: "Next", destination: "AskHoco", next: "" }
+        { text: "Don't Interfere", destination: "Hospital", next: "" },
+        { text: "Intervene", destination: "AskHoco", next: "You get between the two, preventing any physical contact.|You: Glenn, chill out. And you… Gaybe or whatever… get outta here.|Gabe: I’ll be back!|Gabe scurries out of the library, seemingly nervous after having his first real encounter with a woman. You and Glenn decide to work on your project another time and part ways." }
     ]
 );
 
 createScreen(
     "AskHoco",
     "StockdalePhotos/glennhallway1.jpg",
-    "You're working on an English assignment in your room when you hear the doorbell ring. |You open the door and find Glenn. He asks you to your school Homecoming Dance. |Do you go?",
+    "A week later, Glenn pulls you to the side of the hallway during passing period.|Glenn: I have an inquiry.|You: Yeah, what’s up?|Glenn: Ahem. I realize this may come as rather unexpected but–might I interest you in accompanying me to the upcoming Homecoming festivities? I daresay we’d make… quite the formidable pair.",
     [
-        { text: "Of course, my glorious kind.", destination: "Hoco", next: "" },
-        { text: "Naur", destination: "RejectedGlenn", next: "" }
+        { text: "Yes", destination: "HocoGlenn", next: "Glenn: Splendid– I am positively delighted. Well then, until later… try not to let the drudgery of class dampen your brilliance." },
+        { text: "No", destination: "RejectedGlenn", next: "" }
     ]
 );
 
 createScreen(
     "RejectedGlenn",
     "StockdalePhotos/schoolhall1.jpg",
-    "You tell Glenn you don't want to go. He turns around saying by |in a shaky voice and walks away.",
+    "You tell Glenn you don't want to go. He turns around saying by in a shaky voice and walks away.",
     [
         { text: "Start Over?", destination: "start", next: "" }
     ]
@@ -438,7 +417,7 @@ createScreen(
 createScreen(
     "HocoGlenn",
     "StockdalePhotos/glennhoco.jpg",
-    "You meet up with Glenn outside the school gym and enter HOCO with him. |You begin to dance when Gabe grabs Glenn's shoulder and punches him. |What do you do?",
+    "You meet up with Glenn outside the school gym and enter HOCO with him. You begin to dance when Gabe grabs Glenn's shoulder and punches him. |What do you do?",
     [
         { text: "Spectate", destination: "Hospital", next: "" },
         { text: "Tell Gabe to back off.", destination: "HappyHoco", next: "" }
@@ -448,18 +427,9 @@ createScreen(
 createScreen(
     "HappyHoco",
     "StockdalePhotos/glennhoco.jpg",
-    "You tell Gabe to back off. He backs off because he is afraid of women. |Glenn thanks you and you have a great time at HOCO. [GOOD ENDING]",
+    "You tell Gabe to back off. He backs off because he is afraid of women. Glenn thanks you and you have a great time at HOCO.",
     [
         { text: "Start Again?", destination: "start", next: "" }
-    ]
-);
-
-createScreen(
-    "Fight",
-    "StockdalePhotos/glenngabehoco.jpg",
-    "Glenn throws a punch at Gabe. Gabe knocks Glenn out.",
-    [
-        { text: "Ayo call an ambulance.", destination: "Hospital", next: "" }
     ]
 );
 
