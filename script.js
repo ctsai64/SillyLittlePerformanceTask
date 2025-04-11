@@ -305,14 +305,14 @@ createScreen(
     "StockdalePhotos/danteglennhallway.jpg",
     "You arrive at school to see that homecoming tickets are on sale. You see Dante talking to that nerdy kid in your Bio class. They seem to be having a great discussion, bright smiles illuminating across both of their faces. You decide to not interrupt their conversation and buy a ticket.",
     [
-        { text: "Next", destination: "DantexGlenn", next: "" }
+        { text: "Next", destination: "DanteXGlenn", next: "" }
     ]
 )
 
 createScreen(
     "DanteXGlenn",
     "StockdalePhotos/danteglennhoco.jpg",
-    "You arrive a bit late to homecoming, taking a seat at the bleachers in hopes that Dante finds you. Instead, to your surprise, you see Dante and the nerd from before dancing together. You think nothing of it at first, excusing it as friends dancing together, until Dante leans into the other for a passionate kiss on the lips.",
+    "You arrive a bit late to homecoming, taking a seat at the bleachers in hopes that Dante finds you. Instead, to your surprise, you see Dante and the nerd from before dancing together. You think nothing of it at first, excusing it as friends dancing together.",
     [
         { text: "Start Over?", destination: "start", next: "" }
     ]
