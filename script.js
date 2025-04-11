@@ -50,7 +50,7 @@ function textProcessor(inputText) {
         var currentLine = '';
         var words = line.split(' ');
         for (var word of words) {
-            if ((currentLine + word).length > 100) {
+            if ((currentLine + word).length > 130) {
                 splitLines.push(currentLine.trim());
                 currentLine = word;
             } else {
@@ -339,7 +339,7 @@ createScreen(
 createScreen(
     "GlennHallway",
     "StockdalePhotos/glennhallway1.jpg",
-    "Glenn: And where, pray tell, do you suggest we begin our undertaking?"
+    "Glenn: And where, pray tell, do you suggest we begin our undertaking?",
     [
         { text: "Your House", destination: "YourHouse", next: "Glenn: Very well, then. Until we meet again." },
         { text: "His House", destination: "GlennHouse", next: "Glenn: Very well, then. Until we meet again." },
@@ -359,7 +359,7 @@ createScreen(
 
 createScreen(
     "Present",
-    "StockdalePhotos/schoolhallway1.jpg",
+    "StockdalePhotos/schoolhall1.jpg",
     "The next day, the two of you present your project and earn As on it. You leave class and see that homecoming tickets are now on sale. Having no one to take with you, you decide to skip it.",
     [
         { text: "Next", destination: "Sleep", next: "" }
